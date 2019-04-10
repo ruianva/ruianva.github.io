@@ -127,7 +127,7 @@ http://192.168.1.1:8080/
 
           ![1554877047722](media/1554877047722.png)
 
-     - 输入网卡检查命令，将结果粘贴到
+     - 输入网卡检查命令，将结果粘贴到[石墨](https://shimo.im/sheet/k32Q7H0eLQ0Te92J/R3DFr)
       ```bat
      ipconfig /all # win
      ifconfig /a # mac
