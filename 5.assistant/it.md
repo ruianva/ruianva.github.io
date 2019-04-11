@@ -258,6 +258,18 @@ c.NotebookApp.notebook_dir = 'D:/2.dev/jupyter'
 
 
 
+# IT建设
+
+
+
+- 机房/组网设计，以及图书馆系统；
+
+- 设备清单；
+- 校园管理数据库系统表结构；
+- 图书馆系统表结构；
+
+
+
 # 移动机房
 
 - VDI（Virtual Desktop Infrastructure）：虚拟桌面基础架构；
@@ -269,6 +281,16 @@ c.NotebookApp.notebook_dir = 'D:/2.dev/jupyter'
 客户端可考虑[HP mt44](https://www8.hp.com/us/en/thin-clients/mobile/mt44.html?jumpid=in_r11260_us/en/psg/hp_thin_clients/os-windows-embedded-mt44)，[lenovo ideapad d330](http://detail.zol.com.cn/notebook/index1231701.shtml)
 
 移动机柜方面：[玺瑞中泰笔记本充电柜](https://item.taobao.com/item.htm?spm=a1z10.5-c-s.w4002-19007023971.21.5ed425c8pnBTeC&id=581393212553) 支持`机柜背后有插座，统一可放适配器的位置`*30；
+
+## TYPEC充电[笔记本](https://baijiahao.baidu.com/s?id=1619720632244494136&wfr=spider&for=pc)
+
+三星笔记本9
+
+Spectre x2
+
+Apple MacBook Pro
+
+
 
 ![1550197849850](media/1550197849850.png)
 
@@ -599,6 +621,12 @@ Z 综合性图书
 - 编号生成
 
 `perl -e 'for ( 1..1000 ) {$num=(sprintf "%07d", $_);print "$num\n";}'`
+
+
+
+# 教师共同备课
+
+经典阅读
 
 
 
