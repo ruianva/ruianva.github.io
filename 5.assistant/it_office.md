@@ -1,4 +1,15 @@
-# 审批->报销
+# 概述
+
+对于当前`办公室`需要手工处理的`报销`、`打印`；
+
+- 以整个学校效率出发改进，`个人`的效率服从`团队`效率，中代价高昂的；
+- 在符合`行政`的基础上的制定虽高但却是简化的；
+
+
+
+
+
+# 审批
 
 PC客户端：
 
@@ -45,11 +56,10 @@ IT_OFFICE
 
 - CANON imageClassLBP161
 
+
+
 - EPSON L6168
-
 - 位置、网络
-
 - [无装订，自动双面扫描](https://detail.tmall.com/item.htm?spm=a230r.1.14.22.3a362a4fcQQ6rf&id=39982630894&ns=1&abbucket=5&skuId=3654013253560)
-
 - [装订书](https://detail.tmall.com/item.htm?spm=a230r.1.14.6.f57c5bb8qvvuAw&id=574849632380&cm_id=140105335569ed55e27b&abbucket=5)
 

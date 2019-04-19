@@ -644,7 +644,11 @@ Z 综合性图书
 
 - 编号生成
 
-`perl -e 'for ( 1..1000 ) {$num=(sprintf "%07d", $_);print "$num\n";}'`
+```perl
+perl -e 'for ( 1..1000 ) {$num=(sprintf "%07d", $_);print "$num\n";}' #图书馆
+perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf "%02d", $year).(sprintf "%02d", $class).(sprintf "%02d", $_);print "$num\n";}}' #学号
+
+```
 
 
 
