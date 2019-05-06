@@ -13,23 +13,54 @@
 
 PC客户端：
 
-![1555466624124](media/1555466624124.png)
-
-
-
-![1555466685256](media/1555466685256.png)
 
 
 
 
+# 打印机
+
+通过一台公共主机147接入的方式：
+
+怎么设置呢
+
+无线接入：
 
 
 
-# 办公室耗材
+## 通过共享打印机
 
-IT_OFFICE
+- 打印机服务端（203门口台式机）
 
-打印机：
+WIN10 ：WIN->打印机 ->管理->打印机属性
+
+- 安装`组策略`
+
+  ```BAT
+  @echo off
+  pushd "%~dp0"
+  dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~3*.mum >List.txt
+  dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~3*.mum >>List.txt
+  for /f %%i in ('findstr /i . List.txt 2^>nul') do dism /online /norestart /add-package:"C:\Windows\servicing\Packages\%%i"
+  pause
+  ```
+
+- 开启GUEST用户
+
+  ![1556596498861](media/1556596498861.png)
+
+- 配置策略组
+
+![1556596115963](media/1556596115963.png)
+
+在右侧策略处找到`账户:使用空白密码的本地账户只允许进行控制台登录`，此策略默认是已启用；双击打开“账户:使用空白密码的本地账户只允许进行控制台登录”，将其改为“已禁用”
+
+
+
+- 设置打印机为共享
+
+
+
+
 
 ## CANON MF4712
 
@@ -38,13 +69,30 @@ IT_OFFICE
 
 
 
+## 共享FTP
+
+ftp://ruianva@192.168.1.147
+
+- 服务端防火墙开端口
+- 服务端设置port实用被动模式
+
+![1557044482848](media/1557044482848.png)
+
 ## DocuCentre S2110
 
-下载：`施乐复印机s2011驱动程序.exe`
+下载：`施乐复印机s2011驱动程序.exe` DocuCentre S2110 UG_SC.pdf
+
+登陆按4s->输入5个1->启动->输入202
+
+- 设置固定IP 
 
   - 192.168.1.148 端口：9100
 
-  ![1555508474834](media/1555508474834.png)
+  3117
+
+![1557042675731](media/1557042675731.png)
+
+![1555508474834](media/1555508474834.png)
 
   ![1555508498382](media/1555508498382.png)
 
