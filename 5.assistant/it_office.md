@@ -78,6 +78,7 @@ WIN10 ：WIN->打印机 ->管理->打印机属性
   dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~3*.mum >>List.txt
   for /f %%i in ('findstr /i . List.txt 2^>nul') do dism /online /norestart /add-package:"C:\Windows\servicing\Packages\%%i"
   pause
+  
   ```
 
 - 开启GUEST用户
@@ -110,16 +111,18 @@ WIN10 ：WIN->打印机 ->管理->打印机属性
 
 
 
-## CANON MF4712
+## 203-1.CANON MF4712
 
 - 有如下故障：双页打印过程
 - 使用废纸：正面朝下
 
+- 换墨盒流程：
+  - ![1558669519450](media/1558669519450.png)
+  - 
 
+- 卡纸处理：
 
-
-
-## DocuCentre S2110
+## 203-2.DocuCentre S2110
 
 下载：`施乐复印机s2011驱动程序.exe` DocuCentre S2110 UG_SC.pdf
 
@@ -141,7 +144,7 @@ WIN10 ：WIN->打印机 ->管理->打印机属性
 
   ![1555508552694](media/1555508552694.png)
 
-- CANON imageClassLBP161
+## 203-3.CANON imageClassLBP161
 
 
 
