@@ -443,13 +443,17 @@ ARP是IP与MAC地址的解析协议，对网络通信至关重要。一般情况
 
 `killall fcitx-qimpanel`
 
+```
+sudo rm -rf ~/.config/lxpanel/LXDE-pi
+```
 
 
-SSH创建连接
 
-MSTSC
+## SSH创建连接
 
+## MSTSC
 
+windows
 
 ```
 net user visitor /add /active:yes
