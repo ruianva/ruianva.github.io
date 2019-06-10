@@ -425,13 +425,18 @@ ARP是IP与MAC地址的解析协议，对网络通信至关重要。一般情况
 
 `next cloud`: 文件共享
 
+```
+docker 
+next cloud
+add app->only office
+
+```
+
 
 
 # 树莓派客户端
 
 连接`192.168.1.1`
-
-
 
 输入法：
 
@@ -446,6 +451,24 @@ ARP是IP与MAC地址的解析协议，对网络通信至关重要。一般情况
 ```
 sudo rm -rf ~/.config/lxpanel/LXDE-pi
 ```
+
+## 远程连接设置
+
+vncviewver no support authentication methods
+
+By default, the RealVNC Server uses "UNIX Password" authentication, which allows you to login using system account credentials (e.g. pi/raspberry). However, this security type is only supported by the RealVNC Viewer. If you wish to use other viewers, then you will need to configure the server to use "VNC Password" authentication (you can select this on the Security page of the VNC Server Options dialog), and specify a separate password for use with VNC.
+
+optipns->seetings 
+
+Encryption: prefer off
+
+VNC password
+
+
+
+
+
+![1559699967387](media/1559699967387.png)
 
 
 
