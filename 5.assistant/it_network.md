@@ -68,7 +68,68 @@ http://192.168.1.1:8080/
 
 
 
-## 光猫
+## NAS
+
+如果你已经有服务器了，你的数据量真的达到了需要独立NAS的量级了？
+
+- 没有分级存储：热点数据和温数据一视同仁，经常使用的数据，我们成为热数据，使用频度比较低的数据，我们成为温数据，服务器的硬盘价格比较高，但只使用服务器当做存储，是把所有的数据一视同仁，导致不常用的数据也都存放在比较昂贵的服务器中，性价比比较低。
+
+- 互联网访问：通过互联网访问服务器的数据，需要配套相关的防火墙、路由、VPN设备，而且通常只能在PC客户端使用，经常出差的营销、市场人员访问企业的服务器，不是很方便。
+
+
+
+## 光纤
+
+你确认Lan内需要
+
+[FTTC](https://baike.baidu.com/item/FTTC)（光纤到路边）、FTTZ（光纤到小区）、 FTTB（光纤到大楼）、FTTO（[光纤到办公室](https://baike.baidu.com/item/%E5%85%89%E7%BA%A4%E5%88%B0%E5%8A%9E%E5%85%AC%E5%AE%A4)）和FTTH（[光纤](https://baike.baidu.com/item/%E5%85%89%E7%BA%A4)到户）；
+
+光纤收发盒：
+
+- EPON和GPON桥接光猫 可取代 运营商的桥接模式光猫，但需与运营商确认；
+- 光纤收发器则是用于跨楼宇之间的传输；
+- https://item.jd.com/24091199731.html
+
+
+
+- 交换机：**TL-SH1226**、光模块TL-SM531LM；
+- 因为10G初期，大量使用光口。初期IDC建设都是光口，随着这些设备的淘汰，大量洋垃圾冲击市场，使得万兆光口异常的便宜。外加运营商大量光模块非正常渠道流入市场，光耗材价格非常低廉。万兆光有两种链接方式，短距离的DA Cable和长距离的光模块
+
+
+
+- 3类线材：
+
+  - RJ45，10G；
+    - [千兆网络，当年也是先出光纤，后出电口，最终历史选择了千兆电口。而万兆10G网络，最终进入百姓家是光还是电，且听下回分解。](http://koolshare.cn/thread-128540-1-1.html)
+    - CAT6的布线就能满足55米10G传输，使用CAT6A能达到100米10G传输。
+    - 使用7类水晶头；
+  - SFP+，10G 几十块钱，；
+  - Quard SFP，56G IB, 100元/m；
+
+  ![1560740607564](media/1560740607564.png)
+
+
+
+- WLAN网卡
+
+  - 钟雨飞：第一个问题是一万1对于用户来讲好处是什么，万兆速度背后因为这个路由器有三个频段，一个是2.4G，一个是5G-2，5G-1，三个并发速度是一万一千兆，为什么叫三频，传统路由器都是单频的，手机在搜的时候只有一个信号，只能连其中一个，如果说三频就意味着路由器可以由额外两个，是这样子。
+        如果单从数值上距离，万兆的例子是什么，如果跟现有比较普通的单频不用说了，1200兆的路由是上频的，速度将近相差九倍。
+
+    
+
+- 网卡ConnectX-3
+
+- InfiniteBand，Ethernet
+
+- [yiwang](https://www.youtube.com/watch?v=AI4oXXt8a0s)
+
+  
+
+
+
+讯怡，高科，四海，联众
+
+
 
 - 100M(192.168.1.10)/24 dxyyp
   - 057753106762 /axx1xx
@@ -97,23 +158,6 @@ http://192.168.1.1:8080/
 - TP-LINK推荐组网方案：
 
 ![img](media/60C0679209AB97230ABAFC8171D6A2AE.png)
-
-
-
-## 光纤
-
-[FTTC](https://baike.baidu.com/item/FTTC)（光纤到路边）、FTTZ（光纤到小区）、 FTTB（光纤到大楼）、FTTO（[光纤到办公室](https://baike.baidu.com/item/%E5%85%89%E7%BA%A4%E5%88%B0%E5%8A%9E%E5%85%AC%E5%AE%A4)）和FTTH（[光纤](https://baike.baidu.com/item/%E5%85%89%E7%BA%A4)到户）；
-
-光纤收发盒：
-
-- EPON和GPON桥接光猫 可取代 运营商的桥接模式光猫，但需与运营商确认；
-- 光纤收发器则是用于跨楼宇之间的传输；
-
-- https://item.jd.com/24091199731.html
-
-
-
-
 
 ## PoE AP
 
@@ -487,3 +531,14 @@ net localgroup
 https://www.realvnc.com/en/connect/docs/user-permission.html
 
 https://jingyan.baidu.com/article/67508eb401774c9cca1ce4fe.html
+
+
+
+## mplayer
+
+```
+http://www.mplayerhq.hu/DOCS/HTML/zh_CN/commandline.html
+-loop 3
+
+```
+

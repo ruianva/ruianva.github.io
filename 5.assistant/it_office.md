@@ -30,23 +30,75 @@
 
 
 
-# 扫描
+# PPT+水印
 
-扫描
+增加一个水印文本框在首页，选中后复制
+
+`ALT+F8`创建宏
+
+```vb
+Sub CopyWatermark()
+    Dim osh As Shape
+    Dim osl As Slide
+    Dim x As Long
+    
+    Set osh = ActiveWindow.Selection.ShapeRange(1)
+    
+    osh.Tags.Add "WaterMark", "YES"
+    osh.Copy
+    
+    For Each osl In ActivePresentation.Slides
+        ' Don't paste the watermark atop itself
+        If osl.SlideIndex > 1 Then
+            osl.Shapes.Paste
+        End If
+    Next
+    
+End Sub
+'' And this will delete all of the watermarks for you:
+Sub DeleteWatermarks()
+
+    Dim osl As Slide
+    Dim osh As Shape
+    
+    For Each osl In ActivePresentation.Slides
+        For Each osh In osl.Shapes
+            If osh.Tags("Watermark") = "YES" Then
+                osh.Delete
+            End If
+        Next
+    Next
+
+End Sub
+```
+
+运行
 
 
 
 # 打印机
 
-请`勿插拔`离203门口最近的两台打印机：
+所有打印机都`设置物理IP`，并以LAN方式接入；
 
-1. 若你使用203门口的公用电脑，那么你可以直接使用其连接这两台打印机； 
+- 不要通过线缆方式 接入`共享打印机服务器`，除非此PC确认是不用的，不然线缆插拔将导致故障；
+  - `勿插拔`离203门口最近的两台打印机接线到；
+- WLAN很不稳定，谨慎使用；
 
-2. 若你使用个人电脑打印，请直接连接203wifi后，无线接入 公用共享打印机；
 
-   使用方法：启动文件浏览器，键入`\\192.168.1.147 `(若提示要求输入账号，输入登陆账号lenovo，密码20171220。)
 
-   双击你要使用的打印机，安装后就可以使用该打印机。
+
+
+
+
+使用203门口的公用电脑安装了4台打印机的驱动并且设置了`共享打印机`，只需接入校园wifi后，无线接入即可：
+
+- 使用方法：
+
+  1. 启动文件浏览器，键入`\\192.168.1.147 `，(若提示要求输入账号，输入登陆账号lenovo，密码20171220)
+
+  2. 双击你要使用的打印机，安装后就可以使用该打印机；
+
+     若发现共享打印机**同时无法使用**，1.确认是否接入校园wifi；2.确认公用电脑是否好；
 
 ![share](./media/shareprint.gif)
 
@@ -136,6 +188,10 @@ WIN10 ：WIN->打印机 ->管理->打印机属性
 
   3117
 
+Q：遇到了`E3但是并未发现卡纸`；
+
+A：取出所有的纸张，使其变成`C1`，再放会纸张；
+
 ![1557042675731](media/1557042675731.png)
 
 ![1555508474834](media/1555508474834.png)
@@ -160,3 +216,12 @@ WIN10 ：WIN->打印机 ->管理->打印机属性
   - EPSON: [对于非装订，自动双面扫描](https://detail.tmall.com/item.htm?spm=a230r.1.14.22.3a362a4fcQQ6rf&id=39982630894&ns=1&abbucket=5&skuId=3654013253560)
   - CZUR成者科技：[装订书](https://detail.tmall.com/item.htm?spm=a230r.1.14.6.f57c5bb8qvvuAw&id=574849632380&cm_id=140105335569ed55e27b&abbucket=5)
 
+
+
+## 203-4 EPSON 4000多块钱
+
+`192.168.1.150`
+
+![1560734864488](media/1560734864488.png)
+
+![1560734067398](media/1560734067398.png)
