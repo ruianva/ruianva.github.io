@@ -624,7 +624,7 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
 
 ## 🔗链接
 
-- [报告单网络共享表格](https://docs.qq.com/sheet/DWGVsbXBLVkR6YnBB?opendocxfrom=admin&tab=BB08J2&coord=D10%24D10%243%240%24184%240)
+- [打分表](https://docs.qq.com/sheet/DWGVsbXBLVkR6YnBB?opendocxfrom=admin&tab=BB08J2&coord=D10%24D10%243%240%24184%240)
 
 - [词汇表](https://docs.qq.com/sheet/DWGV4ZGlYcWh2ZnN2?opendocxfrom=admin&tab=BB08J2&coord=A1%24A1%240%240%241%240)
 
