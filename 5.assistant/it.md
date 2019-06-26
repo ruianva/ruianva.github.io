@@ -305,8 +305,6 @@ https://github.com/Palakis/obs-ndi/releases/tag/4.6.0
 
 - VDI（Virtual Desktop Infrastructure）：虚拟桌面设施；
 
-  
-
   `锐捷RCD6000-Main`可以支持50个VDI终端+3200个IDV终端；
 
 客户端可考虑[HP mt44](https://www8.hp.com/us/en/thin-clients/mobile/mt44.html?jumpid=in_r11260_us/en/psg/hp_thin_clients/os-windows-embedded-mt44)，[lenovo ideapad d330](http://detail.zol.com.cn/notebook/index1231701.shtml)
@@ -594,6 +592,16 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
 
 # 报告单
 
+以下工作串联，
+
+1.确定考察项
+
+2.
+
+3.评奖
+
+
+
 报告单，就是学生的学期评价表，打分通常有如下几种打分方法：
 
 - 3分：优异、尚可、不达标
@@ -656,8 +664,10 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
 - `1级考察项打分表` 
 
   - `科目栏`：
-    - 初中顺序：`英文 中文 数学 科学 社会 体育 美术 音乐`；8
-    - 小学顺序：`技能 品格与习惯 作业 英文 中文 数学 科学 社会 体育 美术 音乐 媒体教育`  ；3+9
+    - `技能 品格与习惯 作业`
+    - `英文 中文 数学 科学 社会 体育 美术 音乐`
+    - `媒体教育 生活教育 道德与法治`  
+    - 3（品德）+  8（核心）+ 3（辅助）
 
 - `2级考察项打分表`：
 
@@ -688,11 +698,18 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
 
 ## [docx4j](https://53873039oycg.iteye.com/blog/2339120)
 
-程序思路是通过一组hashmap，
+程序思路是通过hashmap成绩替换进行覆盖doc模板；
+
+导入`科目考察项表`，通过`report1Service.groovy`程序解析`词汇表.xlsx`；
+
+```SQL
+
+
+```
+
+
 
 每个年级对学生的评估都不一致，如何能在一张表格中体现呢：
-
-
 
 ```groovy
 static int SUBJECT_DIM1_NUM = 8 // 1级考察项
@@ -704,7 +721,7 @@ static def metas = [:]
 static def qualitySubjects = "技能 品格与习惯 作业".split(/\s/)
 ```
 
-//对于s3
+对于s3
 
 ```
 mergeSubjects // 对于>8个1级考察项的合并处理
@@ -715,7 +732,7 @@ def qualitySubjectItemIndex = qualitySubjectItemHash[qualitySubjectItem] //前�
 
 
 
-### BI
+# BI报表
 
 在数据库里最方便的也应当是一个横表，`ID / DIM_NAME / DIM_VALUE`
 
