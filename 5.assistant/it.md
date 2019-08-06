@@ -146,7 +146,7 @@
 - 图书馆/IC卡系统：
   - 浙江正远；
   - [瑞章](http://www.ruizhangtech.com/public/index.php/index/about/introduce?id=1)
-- 讯飞
+- 讯飞改卷
 - 校园教务系统：
   - 管理数据库系统表结构；
   - 图书馆系统表结构；
@@ -157,130 +157,69 @@
 
 # IT培训
 
-为什么使用markdown?
-
-
-
-
-
-# IT基础设施
+- 为什么使用markdown?
 
 - 智能锁（门禁）
 
   - 门禁规则：非工作时间大门超过2分钟
 
-    
-
 - 打铃机
 
-`zhongjinaozhongmianfeiban.APK` 终极闹钟免费版，还原
+  - `zhongjinaozhongmianfeiban.APK` 终极闹钟免费版，还原
 
 - 桌面云
-- 流媒体服务
-- 协同办公服务
+  - 流媒体服务
+  - 协同办公服务
+
+- 课堂辅助
 
 
 
-## 流媒体服务
+# Infrastructure
 
+服务器选型：选择通用大牌服务器，占3个u的刀片服务器，虽然同样的配置往往要贵10%，但是这是有必要的，其硬件稳定性以及维护软件（`iDRAC网口，需查看初始密码`）对于后续运维都是十分重要的。如：DELL R730 /R7425；
 
+另外机柜一定记得买1米深的长度；
 
-- 方案一： DV现场（含现场互动）
+|              | 30用户                             | 50用户                             |
+| ------------ | ---------------------------------- | ---------------------------------- |
+| cpu          | E5-2620V4 2.1Ghz x 2               | E5-2630V4 2.2Ghz x 2               |
+| ram          | 128GB(16GB DDR4 * 8)               | 224GB(32GB DDR4 * 7)               |
+| data storage | 4TB * 4 (7.2K)                     | 4TB * 2(7.2K)                      |
+| os storage   | 240G SSD * 2 [Intel S4500/S3520]   | 240G SSD * 2 [Intel S4500/S3520]   |
+|              | SSD：480GB * 2 [Intel S3510/S3520] | SSD：480GB * 2 [Intel S3510/S3520] |
+| 网口         | GE*4                               | GE*4                               |
+| 电源         | 双电源                             | 双电源                             |
 
-DV -> OBS STUDIO -> 万股
+`R730XD 2620V42 /16GB/4T SAS4+240G SSD2+480G SSD2/H730P/750Wx2/导轨  38500`
 
-OBS STUDIO显示器 游戏黑屏
+`RS720A-E9 RS24   7351P*2  224G   4t*4 240G*2   480G*2   双电   45900`
 
-WIN->设备管理器，界面拉到底下有一个显示适配器
+### CPU
 
-一个是集成显卡，一个是独立显卡。你禁用独立显卡就好了。 录好视频后启动再启用独立显卡。
+配好一点的，因为这个东西贵，且只能以`替换式升级`；
 
+[AMD 霄龙 7351p](http://detail.zol.com.cn/servercpu/index1174576.shtml)
 
+### [内存](https://www.idcbest.com/servernews/11002265.html)
 
-- 方案二：屏幕（纯技术培训类）
-
-  
-
-  
-
-# 環境設定
-
-1. 安裝 OBS
-2. 安裝 OBS-NDI
-   1. 會要求安裝 [ NDI 3.0 Runtime](http://new.tk/NDIRedistV3)
-3. 安裝 [NewTek Tools](https://www.newtek.com/ndi/tools/) ，只需要安裝 portable 版本即可，我們只需要 NDI Studio Monitor
-
-當安裝完以上的東西後，應該會被要求重啟電腦。電腦重新啟動後，就可以打開 OBS 的程式
-
-1. 在 Tools 的地方，點選 NDI Output settings
-
-[![img](https://i.imgur.com/cjOOe7P.png)](https://i.imgur.com/cjOOe7P.png)
-
-1. 勾選 【Enable NDI Output】
-
-[![img](https://i.imgur.com/07VTll2.png)](https://i.imgur.com/07VTll2.png)
-
-1. 這樣 OBS 就會將你的訊號，用 NDI 的模式發送出去，只要在你的**區域網域**內，支援 NDI Input 的軟體或導播機，都可以搜尋的到
-
-2. 開啟【NewTek NDI Studio Montiro】
-
-   [![img](https://i.imgur.com/EocvMNA.png)](https://i.imgur.com/EocvMNA.png)
-
-3. 選擇訊號來源
-
-[![img](https://i.imgur.com/QLTueoJ.png)](https://i.imgur.com/QLTueoJ.png)
-
-1. 檢視 OBS NDI 訊號輸出結果
-
-   [![img](https://i.imgur.com/PvcqWiC.png)](https://i.imgur.com/PvcqWiC.png)
-
-2. 由於我們要將這一個視窗透過 ZOOM 分享的方式，顯示給其他與會者看。所以還有兩個地方要做調整
-
-   1. 視窗的 border 要隱藏
-
-      [![img](https://i.imgur.com/uZsxSas.png)](https://i.imgur.com/uZsxSas.png)
-
-   2. 聲音音量的顯示，要將 VU Meter 關掉
-
-      [![img](https://i.imgur.com/8PASrQp.png)](https://i.imgur.com/8PASrQp.png)
-
-3. 完成設定，剩下的就是用 Zoom 分享這一個視窗應用程式
-
-這裡要注意一點，當你點選 Hide Window 時，該視窗就無法再移動了，所以如果有第二顆螢幕或是第二台電腦時，這一個分享的動作，可以在另外一個地方進行。
-
-
-
-https://github.com/Palakis/obs-ndi/releases/tag/4.6.0
-
-
-
-## 校园服务器
-
-2U刀片服务器，可以逐步升级，以128GB/千兆开始，CPU宜配好一点的；
-
-61700(256GB)
-
-56000(192GB) 
-
-相差= 5700  元， 相当于一跟内存 2850元/32GB
-
-50900
-
-
+以128GB起步，根据使用场景进行拓展，通常内存价格，2850元/32GB
 
 - 配置:
 
   - cpu: epyc 7351*2  
-  - ram: 224g  
+  - ram: 128g  
 
   - 存储：
     - 数据盘：sata hdd: 4t*4   ssd: 480g*2  
     - OS盘：BOSS 控制器卡 + 含 2 M.2 Sticks 240G (RAID 1)
 
-  - 网卡：双口10ge，电口
+  - 网卡：四口ge，电口
   - raid卡：支持并行raid5，如h730p
 
+### 存储
 
+2个480G SSD与4个4TB SATA构成分层存储，采用Mirror模式，提供大约8TB的有效存储空间。分层存储是利用Windows Server 2012R2的Storage Space特性实现的。该特性可以混合使用SSD和HDD，提供分层存储的能力。热点数据保存在SSD(OS使用)。从而实现HDD的容量，和接近SSD的IO性能。
 
 功能1： 教学服务：
 
@@ -294,11 +233,22 @@ https://github.com/Palakis/obs-ndi/releases/tag/4.6.0
 
 - 教师文件管理服务，目前使用的公用电脑存储较少，服务器采购后使用Nextcloud 文件管理服务。
 
-  
-
 - 服务器cpu、内存、磁盘价格基本平稳（其中服务器内存价格3年稳定）；
 
 - 中美贸易战背景下，cpu有较大涨幅可能，下学期有较大可能开`信息技术`课程；
+
+
+
+## BIOS
+
+开机F2进入
+
+### iDRAC SETTINGS
+
+查看好ip，确认idrac网线接通后，使用主机正面`开机键下方`标签提供的`root`初始化密码登陆：
+
+在此界面中进入最后一项锁定设置`disabled`，然后进行密码重置；
+
 
 
 ## 机房解决方案
@@ -323,6 +273,33 @@ Apple MacBook Pro
 
 ![1550197849850](media/1550197849850.png)
 
+## Windows Server 2019
+
+分为两个版本`standard`与`datacenter`，如何做一个免费版的桌面云：
+
+- 可用作虚拟化访客
+- 否。2 虚拟机，以及每个许可证一个 Hyper-V 主机
+- 否。无限制的虚拟机，以及每个许可证一个 Hyper-V 主机
+
+Microsoft Hyper-V Server 2019 
+
+它为在相同硬件上运行的虚拟机提供了无限基于虚拟机许可证。它还包括新功能，如储存空间直通和存储副本，以及新的受防护的虚拟机和软件定义的数据中心场景所需的功能。
+
+
+
+`windows 10 Home`版也使用[rdp](https://blog.csdn.net/BaoBeiDeXiaoDaiGua/article/details/79314700)；
+
+https://raspberrypi.stackexchange.com/questions/32540/a-great-rdp-client
+
+http://www.xitongcheng.com/jiaocheng/dnrj_article_47179.html
+
+```
+Dism /online /Get-TargetEditions
+Dism /online /Set-Edition: /ProductKey:RC4VN-4GQBW-WYPTV-3BD66-FVXR6 /AcceptEula
+```
+
+
+
 ## KVM+Spice
 
 [Spice](https://gitlab.freedesktop.org/spice/spice)更新再次启动
@@ -343,7 +320,9 @@ USB重定向
 
 
 
-## mstsc(rdp) / vnc
+## mstsc(rdp) vs vnc
+
+
 
 | Software                                  | Protocol          | License     |
 | ----------------------------------------- | ----------------- | ----------- |
@@ -361,14 +340,12 @@ USB重定向
 
 [发展路径](https://www.cnblogs.com/coderzh/archive/2010/09/24/thinclient-protocol.html)
 
-## 配置
 
-- 服务端：
-  - 服务器：Dell PowerEdge R730(INTEL)/7425(AMD) ，4w元左右
-  - 软件：
-    - os：Windows Server 2012R2 DataCenter (支持无限台虚拟机Hyper-V) 正版授权价格3000美元左右；
-    - 云桌面服务端：[Deskpool 3.1 For Hyper-V 试用版](https://vdi-1251215814.cos.ap-guangzhou.myqcloud.com/deskpool/Deskpool_Hyper-V_2012R2_V3_1_0.msi) 0元；
-  - 总计：6万左右
+
+- 软件：
+  - os：Windows Server 2012R2 DataCenter (支持无限台虚拟机Hyper-V) 正版授权价格1000美元左右；
+    - [Deskpool 3.1 For Hyper-V 试用版](https://vdi-1251215814.cos.ap-guangzhou.myqcloud.com/deskpool/Deskpool_Hyper-V_2012R2_V3_1_0.msi) 0元；
+- 总计：6万左右
 
 - 客户端方案1：
   - 主机：树莓派3b+：300元； 
@@ -423,85 +400,304 @@ DDR3 1866:512MB
 闪存：4GB
 ```
 
-- 远程控制
-
-http://i.youku.com/jieyung
-
-### 服务器
-
-推荐型号：DELL R730 /R7425（AMD 霄龙 7000）最大内存1.5T（64GB * 24）
-
-|              | 30用户                             |      | 50用户                             |
-| ------------ | ---------------------------------- | ---- | ---------------------------------- |
-| cpu          | E5-2620V4 2.1Ghz x 2               |      | E5-2630V4 2.2Ghz x 2               |
-| ram          | 128GB(16GB DDR4 * 8)               |      | 224GB(32GB DDR4 * 7)               |
-| data storage | 4TB * 4 (7.2K)                     |      | 4TB * 2(7.2K)                      |
-| os storage   | 240G SSD * 2 [Intel S4500/S3520]   |      | 240G SSD * 2 [Intel S4500/S3520]   |
-|              | SSD：480GB * 2 [Intel S3510/S3520] |      | SSD：480GB * 2 [Intel S3510/S3520] |
-| 网口         | GE*4                               |      | GE*4                               |
-| 电源         | 双电源                             |      | 双电源                             |
-
-### 沙巴克
-
-`R730XD 2620V42 /16GB/4T SAS4+240G SSD2+480G SSD2/H730P/750W2/导轨  38500`
-
-`RS720A-E9 RS24   7351P*2  224G   4t*4 240G*2   480G*2   双电   45900`
-
-
-
-[AMD 霄龙 7351p](http://detail.zol.com.cn/servercpu/index1174576.shtml)
-
-
-
-- 2个480G SSD与4个4TB SATA构成分层存储，采用Mirror模式，提供大约8TB的有效存储空间。分层存储是利用Windows Server 2012R2的Storage Space特性实现的。该特性可以混合使用SSD和HDD，提供分层存储的能力。热点数据保存在SSD(OS使用)。从而实现HDD的容量，和接近SSD的IO性能。
-
-[内存区别](https://www.idcbest.com/servernews/11002265.html)
-
 
 
 ## 测试环境安装
 
 [官方文档](http://www.jieyung.com/service/show.php?id=169)：1493895271.pdf
 
-### 部署服务器Windows Server 2016R2 DataCenter 
 
-Microsoft Hyper-V Server 2016 is a stand-alone product that contains only the Windows hypervisor, a Windows Server driver model, and virtualization components. 
 
-- 保守点，安装2012 os算了：
-- [Hyper-V Server 2016](http://blog.51cto.com/wuyvzhang/2087537)
-  - [WS闭坑指南](https://post.smzdm.com/p/574836/) 
-    - 下载：http://www.imsdn.cn/operating-systems/windows-server-2016/
+# Platform
 
-- 镜像下载 WIN7x86img.zip
+## [OS: hyper-v server](https://www.microsoft.com/en-us/evalcenter/evaluate-hyper-v-server-2019)
 
+### 安装
+
+- 对于付费解决方案，通常使用测试稳定运行超1年的os：如`windows server 2016 datacenter/vmware sphere/华为FusionAccess`；
+- 实际上对于看这篇文章的你而言，一定是在考虑使用`低成本/免费`方案，也就是这篇文章的主角：
+  - `Microsoft Hyper-V` is a stand-alone product that contains only the `Windows hypervisor`, a `Windows Server driver model`, and `virtualization components`. 
+  - [HYPER-V 避坑指南](https://post.smzdm.com/p/574836/) 
+  - [2016](http://www.imsdn.cn/operating-systems/windows-server-2016/)
+
+![1565060997601](media/1565060997601.png)
+
+
+
+## 客户端
+
+- 镜像下载 `WIN7x86img.zip`；
 - [批量创建虚拟机](http://blog.51cto.com/biwei/2308671)
 
+iso镜像老毛桃走起；
 
+- 密码千万别忘记，设置一个密码u盘，
+
+
+
+## 批量制作脚本
+
+```powershell
+第一步：制作模板VHDX文件（略）；
+第二步：制作初始化系统脚本（自动设置IP、GW等）；
+
+
+将以下2个脚本放置到模板VHDX中的C:\Windows\Setup\Scripts目录下：
+第1个脚本：FirstRun.ps1
+#获取计算机名称
+$VMname=hostname
+
+#根据计算机名称获取IP地址后6位
+[int]$IP1=$VMname.Substring($VMname.Length - 6,3)
+[int]$IP2=$VMname.Substring($VMname.Length - 3,3)
+
+#设定FSNNetwork
+$IPaddr1=$IPaddr1='172.1.' + $IP1 + '.' + $IP2
+New-NetIPAddress -InterfaceIndex 12 -IPAddress $IPaddr1 -PrefixLength 16 -DefaultGateway 172.1.0.250
+Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses ("172.1.0.1","172.1.0.2")
+exit
+
+第2个脚本：SetupComplete.cmd (该脚本名称必须为SetupComplete)
+Powershell -Command "C:\Windows\Setup\Scripts\'FirstRun.ps1'"
+timeout 3
+gpupdate /force
+cd  C:\Windows\System32
+wuauclt.exe /DetectNow /UpdateNow
+::cd  C:\FalconAgent
+::falcon-agent.exe -service install
+::sc.exe config  falconagent Start=delayed-auto
+::falcon-agent.exe -service start
+del C:\Windows\Setup\Scripts\FirstRun.ps1
+del %0
+
+
+第三步：创建自动化部署脚本
+# ================================ #
+#    Create-VM_V1.0(Windows).PS1   #   
+#   通过PowerShell创建Hyper-V虚机  #  
+# ================================ #
+#Param($VM_Name,$VM_HostName)
+
+Write-Host -NoNewline -ForegroundColor Magenta '请输入要创建的虚机名称（如：VWSR******）'
+[String]$VM_Name = Read-Host
+Write-Host -NoNewline -ForegroundColor Magenta '请输入需要放在哪台宿主机上（如：PWSR******）'
+[String]$VM_HostName= Read-Host
+Write-Host -NoNewline -ForegroundColor Magenta '要部署App Server还是SQL Server？默认App Server回车即可（如:sql 回车或者2 回车）'
+[String]$VM_OSClass= Read-Host
+
+#判断虚机名称是否为大写字母
+if ($VM_Name |findstr 'vwsr')
+   { Write-Host -NoNewline -ForegroundColor Yellow '注意：虚机名需要使用大写字母！！！'
+     break } 
+Else
+   { }
+   
+$VM_Memory= 4GB
+$VM_CpuCount= 4
+$Owner= "IT"
+$Org= "sxleilong.com"
+$NetworkSwitch= "FSNNetwork"
+#$AdminPassword = "Administrator Password"
+$SourcePath= "D:\VM_Deploy_Script"
+$DjoinSource= $SourcePath + '\' + $VM_Name +'.txt'
+
+#if判断要部署App Server还是SQL Server，默认是App Server
+if (($VM_OSClass -eq '2') -or ($VM_OSClass -eq 'sql') -or ($VM_OSClass -eq 'SQL'))
+   {$Template_VHDX= $SourcePath + '\' + 'En_WinSrv12R2_For_SQL.vhdx'
+    Write-Host -ForegroundColor Green "您选择安装SQL虚机!！！"
+    }
+Else
+   {$Template_VHDX= $SourcePath + '\' + 'En_WinSrv12R2_For_APP.vhdx'
+    Write-Host -ForegroundColor Green "您选择安装App虚机!！！"
+    }
+
+#if判断如果虚机所在宿主机为管理系，虚机文件存放位置为E盘  
+if (( $VM_HostName -eq 'PWSR252001' ) -or ($VM_HostName -eq 'PWSR252002' ))
+   { $VM_Path = 'E:\' + $VM_HostName + '_E_VMs'
+     $VM_RemotePath = '\\' + $VM_HostName + '\E$\' + $VM_HostName + '_E_VMs' }
+Else
+   { $VM_Path = 'D:\' + $VM_HostName + '_D_VMs'
+     $VM_RemotePath = '\\' + $VM_HostName + '\D$\' + $VM_HostName + '_D_VMs' }	 
+$VM_VHDPath = $VM_Path + '\' + $VM_Name + '\Virtual Hard Disks\'+ $VM_Name + '.vhdx'
+$VM_VHDRemotePath = $VM_RemotePath + '\' + $VM_Name + '\Virtual Hard Disks\' + $VM_Name + '.vhdx'
+
+#if判断是否为0系管理服务器，用以自动加入不同OU
+if ($VM_Name |findstr 'VWSR000'	)
+   { $VM_MachineOU= "OU=MgmtServers,OU=sxleilong,DC=sxleilong,DC=cn" }
+Else
+   { $VM_MachineOU= "OU=NewInfra,OU=Production Servers,OU=sxleilong,DC=sxleilong,DC=cn" }
+
+#编辑应答文件模板
+$UnattendTemplate= "Unattend-template.xml"
+$Unattendfile= New-Object XML
+$Unattendfile.Load($SourcePath+"\"+$UnattendTemplate)
+$Unattendfile.unattend.settings.component[2].ComputerName=$VM_Name
+$Unattendfile.unattend.settings.component[2].RegisteredOrganization=$Org
+$Unattendfile.unattend.settings.component[2].RegisteredOwner=$Owner
+$Unattendfile.unattend.settings.Component[3].RegisteredOrganization=$Org
+$Unattendfile.unattend.settings.Component[3].RegisteredOwner=$Owner
+#$UnattendFile.unattend.settings.component[3].UserAccounts.AdministratorPassword.Value=$AdminPassword
+#$UnattendFile.unattend.settings.component[3].autologon.password.value=$AdminPassword
+$UnattendXML=$SourcePath+"\"+$VM_Name+".xml"
+$Unattendfile.save($UnattendXML)
+
+#Mount模板VHDX
+Mount-diskp_w_picpath $Template_VHDX
+$DriveLetter=((Get-DiskImage $Template_VHDX | get-disk | get-partition | Where-Object Type -eq "Basic").DriveLetter)+":"
+
+#注入Unattend.xml文件到VHDX中
+$UnattendXml_Destination=$Driveletter+"\Windows\System32\Sysprep\unattend.xml"
+Copy-Item $UnattendXml $UnattendXml_Destination -Force
+
+#生成Offline JoinDomain文件
+Djoin /Provision /Domain sxleilong.com /Machine $VM_Name /MachineOU $VM_MachineOU /Savefile $DjoinSource /Reuse
+
+#注入Offline JoinDomain文件，并移除历史DjoinFile
+$DjoinDestination= $Driveletter+'\Windows'
+$His_DjoinFile= $DjoinDestination +'\'+'VWSR*.txt'
+Remove-Item -Path $His_DjoinFile -Force
+Copy-Item $DjoinSource  $DjoinDestination -Force
+Djoin /RequestODJ /Loadfile  "$VM_Name.txt" /WindowsPath $DjoinDestination /LocalOS
+
+#注入开机运行脚本
+$ScriptFolder=$DriveLetter+"\Windows\Setup\Scripts\"
+$Scriptname=$Scriptfolder+"FirstRun.ps1"
+If (Test-Path $ScriptFolder)
+   {}
+Else
+   {
+    New-Item $ScriptFolder -ItemType Directory
+    Copy-Item "$SourcePath\Scripts\*" $ScriptFolder -Force
+   }
+
+#DisMount模板VHDX
+dismount-diskp_w_picpath $Template_VHDX
+
+#Remove应答文件和Djoin文件
+Remove-Item -Path $DjoinSource
+Remove-Item -Path $UnattendXml
+
+#Copy虚拟机VHDX文件
+New-item -path $VM_RemotePath\$VM_Name -name "Virtual Hard Disks" -ItemType directory
+Copy-Item -Path $Template_VHDX -Destination $VM_VHDRemotePath
+
+#新建虚机
+New-VM –Name $VM_Name -ComputerName $VM_HostName –Generation 2 -MemoryStartupBytes $VM_Memory -SwitchName $NetworkSwitch –Path $VM_Path -VHDPath $VM_VHDPath
+
+#设置CPU个数
+Set-VM -Name $VM_Name -ComputerName $VM_HostName -ProcessorCount $VM_CpuCount
+
+#禁用动态内存功能
+#Set-VMMemory -Name $VM_Name -ComputerName $VM_HostName -DynamicMemoryEnabled $False  
+
+#添加DVDDrive
+Get-VM -Name $VM_Name -ComputerName $VM_HostName |Add-VMDvdDrive -ControllerNumber 0
+
+#设置VLANID
+#Set-VMNetworkAdapterVlan -ComputerName $VM_HostName -VMName $VM_Name -Access -VlanId 1112
+
+#通过SCVMM分配静态MACAddress
+#Import-Module virtualmachinemanager
+Read-SCVMHost -VMHost $VM_HostName |Out-Null
+$VM=Get-SCVirtualMachine -Name $VM_Name
+$Adapter=$VM.VirtualNetworkAdapters[0]
+Set-SCVirtualNetworkAdapter -VirtualNetworkAdapter $Adapter[0] -MACAddressType "Static" -MACAddress "00-00-00-00-00-00" |Out-Null
+
+#启动虚机
+#Start-VM -Name $VM_Name -ComputerName $VM_HostName
+Start-SCVirtualMachine -VM $VM_Name
+```
 
 ## Deskpool for Hyper-V 
 
-- [下载](http://www.jieyung.com/software/showdownload.php?id=62)：
-- Deskpool_Hyper-V_2012R2_V3_1_0.msi
+- [下载](http://www.jieyung.com/software/showdownload.php?id=62)
 
-免费版：不允许使用用户数据盘：
+# Software
+
+# 流媒体服务
+
+- 方案一： DV现场（含现场互动）
+
+DV -> OBS STUDIO -> 万股
+
+OBS STUDIO显示器 游戏黑屏
+
+WIN->设备管理器，界面拉到底下有一个显示适配器
+
+一个是集成显卡，一个是独立显卡。你禁用独立显卡就好了。 录好视频后启动再启用独立显卡。
 
 
 
+- 方案二：屏幕（纯技术培训类）
+
+  
+
+  
+
+## NDI
+
+1. 安裝 OBS
+2. 安裝 OBS-NDI
+   1. 會要求安裝 [ NDI 3.0 Runtime](http://new.tk/NDIRedistV3)
+3. 安裝 [NewTek Tools](https://www.newtek.com/ndi/tools/) ，只需要安裝 portable 版本即可，我們只需要 NDI Studio Monitor
+
+當安裝完以上的東西後，應該會被要求重啟電腦。電腦重新啟動後，就可以打開 OBS 的程式
+
+1. 在 Tools 的地方，點選 NDI Output settings
+
+[![img](https://i.imgur.com/cjOOe7P.png)](https://i.imgur.com/cjOOe7P.png)
+
+1. 勾選 【Enable NDI Output】
+
+[![img](https://i.imgur.com/07VTll2.png)](https://i.imgur.com/07VTll2.png)
+
+1. 這樣 OBS 就會將你的訊號，用 NDI 的模式發送出去，只要在你的**區域網域**內，支援 NDI Input 的軟體或導播機，都可以搜尋的到
+
+2. 開啟【NewTek NDI Studio Montiro】
+
+   [![img](https://i.imgur.com/EocvMNA.png)](https://i.imgur.com/EocvMNA.png)
+
+3. 選擇訊號來源
+
+[![img](https://i.imgur.com/QLTueoJ.png)](https://i.imgur.com/QLTueoJ.png)
+
+1. 檢視 OBS NDI 訊號輸出結果
+
+   [![img](https://i.imgur.com/PvcqWiC.png)](https://i.imgur.com/PvcqWiC.png)
+
+2. 由於我們要將這一個視窗透過 ZOOM 分享的方式，顯示給其他與會者看。所以還有兩個地方要做調整
+
+   1. 視窗的 border 要隱藏
+
+      [![img](https://i.imgur.com/uZsxSas.png)](https://i.imgur.com/uZsxSas.png)
+
+   2. 聲音音量的顯示，要將 VU Meter 關掉
+
+      [![img](https://i.imgur.com/8PASrQp.png)](https://i.imgur.com/8PASrQp.png)
+
+3. 完成設定，剩下的就是用 Zoom 分享這一個視窗應用程式
+
+這裡要注意一點，當你點選 Hide Window 時，該視窗就無法再移動了，所以如果有第二顆螢幕或是第二台電腦時，這一個分享的動作，可以在另外一個地方進行。
 
 
 
+https://github.com/Palakis/obs-ndi/releases/tag/4.6.0
 
-# 惟校编号
 
-内部编号，常用于如下领域：
+
+# 学生档案
+
+首先，依赖于`校园内部编号`，常用于如下领域：
+
+- 入学注册
 
 - 学生看版
+  
   - 成绩登记
   - 期末手册
-- 图书借阅
-- 校园超市等
-
-
+  - 每周日报、月报
+  
+  
 
 使用标准IC卡`85.6×53.98 mm`制作实体卡；
 
@@ -535,20 +731,13 @@ Microsoft Hyper-V Server 2016 is a stand-alone product that contains only the Wi
   - `找一个靠谱的打印店，形成长期密切的合同，可以贵一点，但是品质不能差。`
   - 金龙广告： 133 5338 5533
 
-
-
 制作一个二维码贴
 
 - 贴在姓名
-- 
-
-
 
 叶文博
 
 蔡铭泽
-
-
 
 ## 相关程序/脚本
 
@@ -565,7 +754,7 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
 
 
 
-# 学生看板
+## 明细维度
 
 - 维度：
 
@@ -579,7 +768,7 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
       - 母亲姓名、母亲职业
       - 是否有亲人
         - 相关学号
-      - 家访时间表；
+      - 家访时间表；(X)
   
   - 能力类
 
@@ -599,9 +788,6 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
     
     
   
-  
-
-
 
 # 报告单
 
@@ -845,3 +1031,17 @@ STUNO SEMESTER SUBJECT DIM1 WEIGHT DIM2
 
 
 
+
+小1如何不做`保姆`：-> 培养`领导力`，进门4件事、课间、放学抄作业
+
+`学习资料单`、`学期教案`；
+
+约谈，怎么在教的/应该
+
+**黑脸预警**；**舆情分析**
+
+家长配合工作了吗？家长安排反馈了吗？
+
+月报反馈学生健康度，运维危险度，避免“晴天霹雳”；
+
+如果家长没反馈，达不到效果，则应该明确责任；
