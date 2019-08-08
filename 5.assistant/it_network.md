@@ -471,12 +471,6 @@ S209
 
 DC-FE-18-89-8D-76
 
-
-
-
-
-
-
 仅允许IP-MAC绑定的数据包通过路由器
 
 下面
@@ -548,9 +542,9 @@ VNC password
 
 ## SSH创建连接
 
-## MSTSC
+## Remote DPMSTSC
 
-windows
+在windows中增加访客用户
 
 ```
 net user visitor /add /active:yes
@@ -562,6 +556,32 @@ https://www.realvnc.com/en/connect/docs/user-permission.html
 
 https://jingyan.baidu.com/article/67508eb401774c9cca1ce4fe.html
 
+[rdp client](https://raspberrypi.stackexchange.com/questions/32540/a-great-rdp-client)
+
+rdesktop and freerdp.
+
+```
+sudo apt-get install rdesktop
+```
+
+Run like this:
+
+```
+rdesktop <hostname/ip_address_of_Windows_machine>
+```
+
+Install freerdp with this command
+
+```
+sudo apt-get install freerdp
+```
+
+Run like this:
+
+```
+xfreerdp <hostname/ip_address_of_Windows_machine> -f
+```
+
 
 
 ## mplayer
@@ -569,6 +589,7 @@ https://jingyan.baidu.com/article/67508eb401774c9cca1ce4fe.html
 ```
 http://www.mplayerhq.hu/DOCS/HTML/zh_CN/commandline.html
 -loop 3
-
 ```
+
+
 
