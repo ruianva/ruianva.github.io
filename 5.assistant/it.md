@@ -247,6 +247,8 @@
 
 查看好ip，确认idrac网线接通后，使用主机正面`开机键下方`标签提供的`root`初始化密码登陆：
 
+`XHAEVF4PF3EP`
+
 在此界面中进入最后一项锁定设置`disabled`，然后进行密码重置；
 
 
@@ -424,16 +426,198 @@ DDR3 1866:512MB
 
 
 
+### 安装/配置Hyper-V
+
+控制面板里添加；
+
+### [datacenter激活](https://www.virtualizationhowto.com/2019/02/upgrade-windows-server-evaluation-to-full-version-standard-to-datacenter/)
+
+
+
+dism /online /get-currentedition
+
+/productkey:`RC4VN-4GQBW-WYPTV-3BD66-FVXR6`
+
+### mstsc
+
+powershell远程连接
+
+
+
+```powershell
+#服务端
+Enable-PsRemoting
+#客户端
+Set-Item wsman:\localhost\Client\TrustedHosts -value *
+Enter-PSSession 192.168.0.149 -Credential administrator
+
+
+Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0
+Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+
+slmgr.vbs -upk #执行原有安装密钥的清除(若系统为未激活状态可以省略)
+slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX #安装对应版本的GVLK密钥
+slmgr /skms kms.domain.com #KMS服务器的域名或者内部IP
+slmgr /ato #执行KMS激活操作
+
+#若提示 错误:0xC0000022 在运行 Microsoft Windows 非核心版本的计算机上,运行”slui.exe 0x2a 0xC0000022″以显示错误文本
+#（在HKEY_LOCAL_MACHINE–》SOFTWARE–》Microsoft–》Windows NT–》CurrentVersion–》SoftwareProtectionPlatform里面，将SkipRearm的值修改为1）重启电脑
+#以管理员身份启动cmd，输入SLMGR -REARM，根据提示，再次重启电脑
+
+slmgr /upk
+slmgr /ipk WMDGN-G9PQG-XVVXX-R3X43-63DFG
+slmgr /skms zh.us.to
+slmgr /ato
+```
+
+#### 管理->高级安全防火墙->启用一下端口/服务
+
+![1565103931546](media/1565103931546.png)
+
+#### 控制面板->系统->远程设置
+
+## 虚拟机初始化
+
+### 创建bridge网卡
+
+### 设置远程`服务`/`设置`启用
+
+![1565142938409](media/1565142938409.png)
+
+### 控制面板 cleartype
+
+### rdp
+
+http://blog.chinaunix.net/uid-29479952-id-5761566.html
+
+
+
+### rdp音质
+
+raspberry xfreeRDP latency
+
+```
+
+rdpdr – 设备重定向
+
+cliprdr – 剪贴板重定向
+
+drdynvc – 动态重定向
+
+audin – 音频输入重定向
+
+rdpsnd – 音频输出重定向
+
+tsmf - 视频重定向
+
+ 
+
+一、设备重定向
+
+    1.磁盘重定向
+
+    --plugin rdpdr --data disk:: --
+
+Name:被重定向后磁盘的名称；
+
+    Path:将要被重定向的本地目录；
+
+2.智能卡重定向
+
+--plugin rdpdr --data smartcard: --
+
+Name:被重定向后智能卡的名称；
+
+3.串行端口重定向
+
+--plugin rdpdr --data serial:: --
+
+重定向串行端口（eg.COMx）到服务端
+
+4.并行端口重定向
+
+--plugin rdpdr --data parallel:: --
+
+重定向并行端口（eg.LPTx）到服务端
+
+5.打印机重定向
+
+--plugin rdpdr --data printer:: --
+
+重定向一个或多个打印机到服务端
+
+二、剪贴板重定向
+
+--plugin cliprdr同步client和server端的剪贴板；
+
+三、音频输入重定向
+
+--plugin drdynvc --data audin –
+
+启用音频输入重定向（例如麦克风）
+
+四、音频输出重定向
+
+    --plugin rdpsnd --data alsa --   使用ALSA system
+
+--plugin rdpsnd --data pulse --   使用PulseAudio
+
+--plugin rdpsnd --data latency:50 --   使用rdpsnd with a given latency in ms
+
+--plugin rdpsnd   默认
+
+五、多媒体重定向
+
+服务端要求，这要求我们的server端必须是windows server 2008 R2或者是windows 7。当服务端为windows server 2008 R2时需要手动启动音视频重放重定向功能。Windows7系统无需任何设置即可用于多媒体重定向的server端。
+
+客户端要求，必须安装以下组件：
+
+FFmpeg (libavcodec-dev)
+
+ALSA (libasound2-dev) and/or PulseAudio (libpulse-dev)
+
+XVideo (libxv-dev)
+
+1.快速启动多媒体重定向
+
+Freerdp会选择默认的音频设备
+
+xfreerdp --plugin drdynvc --data tsmf --
+
+2.音频输入
+
+xfreerdp --plugin drdynvc --data tsmf:audio:pulse --
+
+xfreerdp --plugin drdynvc --data tsmf:audio:alsa:plughw:0,0 –
+
+3.视频适配器
+
+当你不想使用默认的视频适配器或者默认的视频适配器被占用时，你可以选择指定的视频适配器
+
+xfreerdp --xv-port (port) --plugin drdynvc --data tsmf -- (server)
+
+cat /proc/asound/card0/pcm0p/sub0/hw_params
+
+vi /etc/pulse/daemon.conf
+
+```
+
+https://bbs.archlinux.org/viewtopic.php?id=185736
+
+
+
+### 软件初始化
+
 ## 客户端
 
 - 镜像下载 `WIN7x86img.zip`；
 - [批量创建虚拟机](http://blog.51cto.com/biwei/2308671)
 
-iso镜像老毛桃走起；
+老毛桃要以`iso`模式走起，启动时按F12进入；
 
-- 密码千万别忘记，设置一个密码u盘，
+- 密码千万别忘记，设置一个密码u盘
 
-
+![1565100948365](media/1565100948365.png)
 
 ## 批量制作脚本
 
@@ -612,9 +796,69 @@ Start-SCVirtualMachine -VM $VM_Name
 
 - [下载](http://www.jieyung.com/software/showdownload.php?id=62)
 
+## Docker for onlyOffice
+
+os推荐使用[centos](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso)
+
+- [docker](https://www.jianshu.com/p/00e162bf587a)
+
+删除已安装的Docker
+
+```
+# Uninstall installed docker
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+```
+
+配置阿里云Docker Yum源
+
+```
+# Set up repository
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+
+# Use Aliyun Docker
+sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+```
+
+安装 Docker CE
+
+更新 yum 软件源缓存，并安装 docker-ce。
+
+```
+sudo yum makecache fast
+sudo yum install docker-ce
+
+```
+
+启动Docker服务
+
+```
+# Start docker service
+systemctl enable docker
+systemctl start docker
+
+yum -y install epel-release python-pip pip
+pip install scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install docker-compose
+
+sudo systemctl restart docker
+执行安装
+https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud
+```
+
+
+
 # Software
 
-# 流媒体服务
+## 流媒体服务
 
 - 方案一： DV现场（含现场互动）
 
@@ -630,9 +874,6 @@ WIN->设备管理器，界面拉到底下有一个显示适配器
 
 - 方案二：屏幕（纯技术培训类）
 
-  
-
-  
 
 ## NDI
 
