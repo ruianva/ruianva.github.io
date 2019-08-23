@@ -504,13 +504,27 @@ add app->only office
 
 # 树莓派客户端
 
+```
+sudo vi /etc/apt/sources.list
+deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi
+sudo vi /etc/apt/sources.list.d/raspi.list
+
+deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ stretch main ui
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ stretch main ui
+
+sudo apt-get update
+
+```
+
 连接`192.168.1.1`
 
 输入法：
 
-`sudo apt-get install fcitx-sunpinyin`
-
-`sudo apt-get autoremove fcitx-*`
+```
+sudo apt-get autoremove fcitx-
+sudo apt-get install fcitx-sunpinyin
+```
 
 键盘-英语（美国）
 
@@ -522,7 +536,7 @@ sudo rm -rf ~/.config/lxpanel/LXDE-pi
 
 ## 远程连接设置
 
-vncviewver no support authentication methods
+`vncviewver` no support authentication methods
 
 By default, the RealVNC Server uses "UNIX Password" authentication, which allows you to login using system account credentials (e.g. pi/raspberry). However, this security type is only supported by the RealVNC Viewer. If you wish to use other viewers, then you will need to configure the server to use "VNC Password" authentication (you can select this on the Security page of the VNC Server Options dialog), and specify a separate password for use with VNC.
 
@@ -541,6 +555,16 @@ VNC password
 
 
 ## SSH创建连接
+
+## 莫名其妙`connection abort'`
+
+```
+sudo rm /etc/ssh/ssh_host_*
+
+sudo dpkg-reconfigure openssh-server
+```
+
+
 
 ## Remote DPMSTSC
 
@@ -592,4 +616,50 @@ http://www.mplayerhq.hu/DOCS/HTML/zh_CN/commandline.html
 ```
 
 
+
+## 桌面云
+
+CLICK TO RUN SCRIPT 
+
+```java
+[Desktop Entry]
+Name=example
+Comment=My Python Program
+Exec=java -classpath /home/pi/helper-all-1.0-SNAPSHOT.jar service.DCClient 192.168.0.149 postgres ruianVA123
+Icon=/home/pi/example.png
+Terminal=false
+MultipleArgs=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=true
+```
+
+
+
+## AIRPLAY
+
+仍然要连接到同网段WIFI，建议条件满足还是购买专用无线投屏器；
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+
+
+deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi
+
+sudo vi /etc/apt/sources.list.d/raspi.list
+deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ stretch main ui
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ stretch main ui
+ 
+sudo apt-get install autoconf automake avahi-daemon build-essential git libasound2-dev libavahi-client-dev libconfig-dev libdaemon-dev libpopt-dev libssl-dev libtool xmltoman libavahi-compat-libdnssd-dev
+
+git clone https://github.com/mikebrady/shairport-sync.git
+
+autoreconf -i -f
+./configure --with-alsa --with-avahi --with-ssl=openssl --with-systemd --with-metadata
+
+make
+sudo make install
+```
 

@@ -832,13 +832,14 @@ sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/cen
 
 更新 yum 软件源缓存，并安装 docker-ce。
 
+
+
 ```
 sudo yum makecache fast
 sudo yum install docker-ce
-
 ```
 
-启动Docker服务
+启动Docker服务；
 
 ```
 # Start docker service
@@ -850,7 +851,17 @@ pip install scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install docker-compose
 
 sudo systemctl restart docker
-执行安装
+
+#配置gfw sslocal
+
+vi ~/.gitconfig
+[http]
+        proxy = socks5://127.0.0.1:1080
+[https]
+        proxy = socks5://127.0.0.1:1080
+
+#执行安装
+
 https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud
 ```
 
@@ -1032,13 +1043,11 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
 
 # 报告单
 
-以下工作串联，
+配置以下工作串联，
 
-1.确定考察项
+- 确定评价项
 
-2.
 
-3.评奖
 
 
 
@@ -1056,13 +1065,13 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
 
 ![1560307654488](media/1560307654488.png)
 
-- 每个`科目`由**最多**8个的`1级考察项`构成，如：
+- 每个`科目`由**最多**8个的`1级评价项`构成，如：
 
   - 小学科目`品格与习惯`，由`井然有序,自制,专注,感恩,尊重,尽责,课前准备,发言 ,善于倾听,自我调节,服从性`构成；
 
-- 每个`1级考察项目`可进一步由最多12个`2级考察项`构成：
+- 每个`1级评价项目`可进一步由最多12个`2级评价项`构成：
 
-  - 如科目`品格与习惯`的1级考察项`井然有序`由`11个科任老师评定`构成；
+  - 如科目`品格与习惯`的1级评价项`井然有序`由`11个科任老师评定`构成；
 
 
 
@@ -1101,7 +1110,7 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
   - 以7分满分，0.5为最小单位；
   - 建议先在本地电脑Excel处理好，然后在粘贴上去比较方便；
 
-- `1级考察项打分表` 
+- `1级评价项打分表` 
 
   - `科目栏`：
     - `技能 品格与习惯 作业`
@@ -1109,9 +1118,9 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
     - `媒体教育 生活教育 道德与法治`  
     - 3（品德）+  8（核心）+ 3（辅助）
 
-- `2级考察项打分表`：
+- `2级评价项打分表`：
 
-  - 当前仅对`小学班级`使用，即`技能 品格与习惯 作业`考察项的进一步细化打分项（由相关各科老师进行打分表）；
+  - 当前仅对`小学班级`使用，即`技能 品格与习惯 作业`评价项的进一步细化打分项（由相关各科老师进行打分表）；
 
   ![1560991214774](media/1560991214774.png)
 
@@ -1140,13 +1149,13 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
 
 程序思路是通过hashmap成绩替换进行覆盖doc模板；注意值里不能又特殊符号(如`&`)；
 
-导入`科目考察项表`，通过`report1Service.groovy`程序解析`词汇表.xlsx`；
+导入`科目评价项表`，通过`report1Service.groovy`程序解析`词汇表.xlsx`；
 
 每个年级对学生的评估都不一致，如何能在一张表格中体现呢：
 
 ```groovy
-static int SUBJECT_DIM1_NUM = 8 // 1级考察项
-static int SUBJECT_DIM2_NUM = 14 // 2级考察项
+static int SUBJECT_DIM1_NUM = 8 // 1级评价项
+static int SUBJECT_DIM2_NUM = 14 // 2级评价项
 static int SUBJECT_DIM1_SUM_NUM = 4 // 总评 评语
 static int SUBJECT_DIM1_ALL_NUM = SUBJECT_DIM1_NUM + SUBJECT_DIM1_SUM_NUM // 总评 评语
 static int META_COL_NUM = 6 // 姓名等其他元数据项
@@ -1157,8 +1166,8 @@ static def qualitySubjects = "技能 品格与习惯 作业".split(/\s/)
 对于s3
 
 ```
-mergeSubjects // 对于>8个1级考察项的合并处理
-qualitySubjectItemIndex // 对于2级考察项的序列统计
+mergeSubjects // 对于>8个1级评价项的合并处理
+qualitySubjectItemIndex // 对于2级评价项的序列统计
 
 def qualitySubjectItemIndex = qualitySubjectItemHash[qualitySubjectItem] //前后相串
 ```
@@ -1183,9 +1192,11 @@ def qualitySubjectItemIndex = qualitySubjectItemHash[qualitySubjectItem] //前�
 
 # BI报表
 
-在数据库里最方便的也应当是一个横表，`ID / DIM_NAME / DIM_VALUE`
+对于1级考察项：`ID / DIM_NAME / DIM_VALUE`；
 
-目前我们的科目成绩(学科/技能/作业/品格与习惯) 结构如下： 科目成绩-> 1级考察项 -> 2级考察项。（其中2级考察项目，仅小学涉及，为各个老师对1级考察项的明细打分）
+对于2级考察项：
+
+目前我们的科目成绩(学科/技能/作业/品格与习惯) 结构如下： 科目成绩-> 1级评价项 -> 2级评价项。（其中2级评价项目，仅小学涉及，为各个老师对1级评价项的明细打分）
 
 [rollup](https://blog.csdn.net/u012388497/article/details/45577673)
 
@@ -1286,3 +1297,4 @@ STUNO SEMESTER SUBJECT DIM1 WEIGHT DIM2
 月报反馈学生健康度，运维危险度，避免“晴天霹雳”；
 
 如果家长没反馈，达不到效果，则应该明确责任；
+
