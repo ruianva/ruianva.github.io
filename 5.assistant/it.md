@@ -622,6 +622,10 @@ https://bbs.archlinux.org/viewtopic.php?id=185736
 ## 批量制作脚本
 
 ```powershell
+xcopy手工处理
+echo d | xcopy 1001\Virtual Hard Disks\vdisk 1002
+
+
 第一步：制作模板VHDX文件（略）；
 第二步：制作初始化系统脚本（自动设置IP、GW等）；
 
@@ -861,7 +865,6 @@ vi ~/.gitconfig
         proxy = socks5://127.0.0.1:1080
 
 #执行安装
-
 https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud
 ```
 

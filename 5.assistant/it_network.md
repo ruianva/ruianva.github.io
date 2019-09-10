@@ -20,6 +20,7 @@
 
   - 已购型号：TL-WVR900L、TL-WAR1200L、 TL-WVR450G
   - 网络汇聚问题：`双WAN`
+  - 如何绑定IP，如何设置VPN；
 
 - 瑞安本地安防服务商1：
   - 蔡丰电脑
@@ -619,12 +620,12 @@ http://www.mplayerhq.hu/DOCS/HTML/zh_CN/commandline.html
 
 ## 桌面云
 
-CLICK TO RUN SCRIPT 
+`CLICK TO RUN SCRIPT ` `a.desktop`
 
 ```java
 [Desktop Entry]
-Name=example
-Comment=My Python Program
+Name=DesktopCloud
+Comment=My java Program
 Exec=java -classpath /home/pi/helper-all-1.0-SNAPSHOT.jar service.DCClient 192.168.0.149 postgres ruianVA123
 Icon=/home/pi/example.png
 Terminal=false
@@ -632,6 +633,19 @@ MultipleArgs=false
 Type=Application
 Categories=Application;Development;
 StartupNotify=true
+```
+
+启动桌面后自动运行脚本
+
+```
+vi /home/pi/a.sh
+`grep /|sed`
+
+vi /pi/
+sudo vi /etc/xdg/lxsession/LXDE-pi/autostart
+@sh /home/pi/a.sh
+vi /etc/rc.local
+sh /home/pi/a.sh
 ```
 
 
@@ -663,3 +677,6 @@ make
 sudo make install
 ```
 
+## 制作镜像卡片（读）
+
+![1566971388449](media/1566971388449.png)
