@@ -4,7 +4,24 @@
 
   - 小哥：`133 8587 4559`；
 
-  - 电信经理：`15305776192` `升级千兆`
+  - 电信经理：`199 0669 0685` `升级千兆`
+
+      - 姜经理：52330 381MJ 93034 88F 
+
+      - 350元：家用500M+100M
+
+          - 假：20m
+
+      - 599元：50m，100m、1000M
+
+          - 100元
+
+      - 企业宽带：家用上行速度1000M/100M，专线120/月，
+
+          - 温州20m 2q，50m 4q（20元）；
+    - 
+      
+      ​    
 
   - 电信故障：10000
 
@@ -56,6 +73,8 @@
 
 
 ## 宽带口令
+
+关闭所有wifi接入
 
 100M：
 
@@ -350,6 +369,16 @@ http://www.360doc.com/content/18/0103/15/17524610_718722175.shtml
 
 
 
+设置文字提示
+
+![1572224250854](media/1572224250854.png)
+
+旋转
+
+![1572224527540](media/1572224527540.png)
+
+
+
 ![1557199409279](media/1557199409279.png)
 
 # 网络管理方案
@@ -503,12 +532,15 @@ add app->only office
 
 
 
-# 树莓派客户端
+# 树莓派
+
+## [客户端 修改镜像](https://mirror.tuna.tsinghua.edu.cn/help/raspbian/)
 
 ```
 sudo vi /etc/apt/sources.list
 deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi
 deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi
+
 sudo vi /etc/apt/sources.list.d/raspi.list
 
 deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ stretch main ui
@@ -520,17 +552,20 @@ sudo apt-get update
 
 连接`192.168.1.1`
 
-输入法：
+
+
+## 输入法：
 
 ```
 sudo apt-get autoremove fcitx-
 sudo apt-get install fcitx-sunpinyin
 ```
 
-键盘-英语（美国）
+## 键盘-英语（美国）
 
 `killall fcitx-qimpanel`
 
+重置桌面
 ```
 sudo rm -rf ~/.config/lxpanel/LXDE-pi
 ```
@@ -543,7 +578,7 @@ By default, the RealVNC Server uses "UNIX Password" authentication, which allows
 
 optipns->seetings 
 
-Encryption: prefer off
+`Encryption: prefer off`123123
 
 VNC password
 
@@ -609,11 +644,35 @@ xfreerdp <hostname/ip_address_of_Windows_machine> -f
 
 
 
-## mplayer
+## mplayer 打铃机
 
 ```
 http://www.mplayerhq.hu/DOCS/HTML/zh_CN/commandline.html
 -loop 3
+
+#40 7 * * * mplayer /home/pi/Desktop/ring/1.mp3 -loop 5
+46 11 * * * mplayer /home/pi/Desktop/ring/2.mp3 -loop 3
+5 16 * * * mplayer /home/pi/Desktop/ring/2.mp3 -loop 5
+45 16 * * * mplayer /home/pi/Desktop/ring/byebye.mp3 -loop 3
+
+16 8 * * * mplayer /home/pi/Desktop/ring/break.mp3
+9 9 * * * mplayer /home/pi/Desktop/ring/break.mp3
+
+#0 10 * * * mplayer /home/pi/Desktop/ring/1.mp3
+
+8 10 * * * mplayer /home/pi/Desktop/ring/break.mp3
+59 10 * * * mplayer /home/pi/Desktop/ring/break.mp3
+
+
+32 12 * * * mplayer /home/pi/Desktop/ring/break.mp3
+24 13 * * * mplayer /home/pi/Desktop/ring/break.mp3
+
+#15 14 * * * mplayer /home/pi/Desktop/ring/1.mp3
+
+23 14 * * * mplayer /home/pi/Desktop/ring/break.mp3
+14 15 * * * mplayer /home/pi/Desktop/ring/break.mp3
+
+20 8 * * 1 mplayer /home/pi/Desktop/ring/athletic.mp3 -loop 2
 ```
 
 
@@ -639,16 +698,33 @@ StartupNotify=true
 
 ```
 vi /home/pi/a.sh
-`grep /|sed`
+`cat /home/pi/Desktop/a.desktop |grep Exec|sed "s/Exec=//"`
 
 vi /pi/
 sudo vi /etc/xdg/lxsession/LXDE-pi/autostart
 @sh /home/pi/a.sh
-vi /etc/rc.local
-sh /home/pi/a.sh
+
+#vi /etc/rc.local
+#sh /home/pi/a.sh
 ```
 
+## 定时关机
 
+```
+sudo crontab -e
+分 时
+10 16 0 0 0 /sbin/poweroff
+```
+
+默认编辑器设置为`sudo vi /etc/vim/vimrc.tiny`
+
+```
+compatible”改成“nocompatible”
+
+新增一个配置：
+
+set backspace=2 
+```
 
 ## AIRPLAY
 
@@ -680,3 +756,587 @@ sudo make install
 ## 制作镜像卡片（读）
 
 ![1566971388449](media/1566971388449.png)
+
+## 远程打铃
+
+### EKHO安装
+
+```
+#官网指导，http://www.eguidedog.net/doc/doc_install_ekho.php
+
+1. 下载源码
+wget http://sourceforge.net/projects/e-guidedog/files/Ekho/7.7/ekho-7.7.1.tar.xz
+tar 
+apt-get update
+sudo apt-get install libespeak-dev libsndfile1-dev libpulse-dev libncurses5-dev libestools-dev festival-dev libvorbis-dev libmp3lame-dev libdotconf-dev texinfo
+sudo apt-get -y install pulseaudio
+
+tar xvJf  ekho-7.5.tar.xz
+
+cd ekho-7.5
+./configure
+make
+sudo make install
+
+ekho '你好'
+
+Ekho text-to-speech engine.
+Version: 6.5
+
+Syntax: ekho [option] [text]
+-v, --voice=VOICE
+        Specified language or voice. ('Cantonese', 'Mandarin', 'Hakka', 'Tibetan', 'Ngangien' and 'Hangul' are available now. Mandarin is the default language.)
+-l, --symbol
+        List phonetic symbol of text. Characters' symbols are splited by space.
+-f, --file=FILE
+        Speak text file. ('-' for stdin)
+-o, --output=FILE
+        Output to file.
+-t, --type=OUTPUT_TYPE
+        Output type: wav(default), ogg or mp3
+-p, --pitch=PITCH_DELTA
+        Set delta pitch. Value range from -100 to 100 (percent)
+-a, --volume=VOLUME_DELTA
+        Set delta volume. Value range from -100 to 100 (percent)
+-r, --rate=RATE
+        Set delta rate (this scales pitch and speed at the same time). Value range from -50 to 100 (percent)
+-s, --speed=SPEED
+        Set delta speed. Value range from -50 to 300 (percent)
+--server
+        Start Ekho TTS server.
+--request=TEXT
+        Send request to Ekho TTS server.
+--port
+        Set server port. Default is 2046.
+--version
+        Show version number.
+-h, --help
+        Display this help message.
+
+Please report bugs to Cameron Wong (hgneng at gmail.com)
+http://www.neko.ne.jp/~freewing/raspberry_pi/raspberry_pi_3_aquestalk_pi/
+
+```
+
+
+
+### 树莓派PERL服务端脚本
+
+```perl
+#节省内存
+vi callService.pl
+
+#!/usr/bin/perl
+ 
+#==============
+# Date: 2012-11-03
+# User: wcdj
+#==============
+ 
+use Socket;
+use Carp;
+use FileHandle;
+ 
+# [1] use port 8080 by default, unless overridden on command line
+$port = (@ARGV ? $ARGV[0] : 8080);
+ 
+# [2] create local TCP socket and set it to listen for connections
+$proto = getprotobyname('tcp');
+socket(S, PF_INET, SOCK_STREAM, $proto) || die;
+setsockopt(S, SOL_SOCKET, SO_REUSEADDR, pack("l", 1)) || die;
+bind(S, sockaddr_in($port, INADDR_ANY)) || die;
+listen(S, SOMAXCONN) || die;
+ 
+# [3] print a startup message
+printf("<<< perl_web_svr accepting on port %d >>>\n\n", $port);
+ 
+while (1)
+{
+	# [4] wait for a connection C(Client)
+	$cport_caddr = accept(C, S);
+	($cport, $caddr) = sockaddr_in($cport_caddr);
+	C->autoflush(1);
+ 
+	# [5] print who the connection is from
+	$cname = gethostbyaddr($caddr, AF_INET);
+	printf("<<< request from [%s] >>>\n", $cname);
+ 
+	# [6] read request msg until blank line, and print on screen
+	while ($line = <C>)
+	{
+		print $line;
+		if ($line =~ /^\r/) {last; }
+	}
+ 
+	# [7] prompt for response msg, and input response lines,
+	#     sending response lines to client, until solitary "."
+	printf("<<< type response followed by '.' >>>\n");
+ 
+	while ($line = <STDIN>)
+	{
+		$line =~ s/\r//;
+		$line =~ s/\n//;
+		if ($line =~ /^\./) {last; }
+		print C $line . "\r\n";
+	}
+ 
+	close(C);
+	
+}
+
+```
+
+### 打铃调度服务器
+
+作为中间发送HTTP请求的服务器，辅助用户发送 HTTP接口；
+
+```
+
+```
+
+
+
+# WIN10开启远程服务
+
+https://jingyan.baidu.com/article/3052f5a10f1e4e97f31f862b.html
+
+01101014
+
+01101014
+
+# vs IDE
+
+![1570259374232](media/1570259374232.png)
+
+![1570259400417](media/1570259400417.png)
+
+# .net core
+
+## 业务验证
+
+书籍编号:isbn 13/10，惟理达图书编号：7位，合并在一起的最终效果是7；
+
+VANO编号：6位+两位验证码，必须是6位；
+
+## 表单事件
+
+```
+onkeypress - KeyboardEventArgs e   --仅识别Enter
+oninput - ChangeEventArgs e --识别普通输入，不识别Enter
+e.Value as string
+oninput 事件在元素值发生变化是立即触发， onchange 在元素失去焦点时才触发。
+. As we now know, by default this event is onchange, but in the example above we've specified the oninput event. This event is fired for each character typed so the Titles value is updated continually.
+```
+
+
+
+## 开发
+
+直接使用json配置的内容，https://www.cnblogs.com/xiaomen/p/6362561.html：
+
+"Server=(localdb)\\mssqllocaldb;Database=Library.TestDB;Trusted_Connection=True;MultipleActiveResultSets=true")
+
+`Startup.cs`
+
+```
+options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+
+options.UseNpgsql(Configuration.get...)
+```
+
+
+
+```
+sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+sudo yum install dotnet-sdk-3.0
+dotnet new blazor -o BlazorHelloWorld
+cd BlazorHelloWorld
+
+# 开端口
+vi appsettings.json
+"Kestrel": {
+        "EndPoints": {
+                "Http": {
+                        "Url": "http://0.0.0.0:5123"
+                }
+        }
+  },
+k
+/sbin/iptables -I INPUT -p tcp --dport 5123 -j ACCEPT
+dotnet run
+```
+/etc/init.d/v2ray
+```
+#!/bin/sh
+#
+# v2ray        Startup script for v2ray
+#
+# chkconfig: - 24 76
+# processname: v2ray
+# pidfile: /var/run/v2ray.pid
+# description: V2Ray proxy services
+#
+ 
+### BEGIN INIT INFO
+# Provides:          v2ray
+# Required-Start:    $network $local_fs $remote_fs
+# Required-Stop:     $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: V2Ray proxy services
+# Description:       V2Ray proxy services
+### END INIT INFO
+ 
+DESC=v2ray
+NAME=v2ray
+DAEMON=/usr/bin/v2ray/v2ray
+PIDFILE=/var/run/$NAME.pid
+LOCKFILE=/var/lock/subsys/$NAME
+SCRIPTNAME=/etc/init.d/$NAME
+RETVAL=0
+ 
+DAEMON_OPTS="-config /etc/v2ray/config.json"
+ 
+# Exit if the package is not installed
+[ -x $DAEMON ] || exit 0
+ 
+# Read configuration variable file if it is present
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+ 
+# Source function library.
+. /etc/rc.d/init.d/functions
+ 
+start() {
+  local pids=$(pgrep -f $DAEMON)
+  if [ -n "$pids" ]; then
+    echo "$NAME (pid $pids) is already running"
+    RETVAL=0
+    return 0
+  fi
+ 
+  echo -n $"Starting $NAME: "
+ 
+  mkdir -p /var/log/v2ray
+  $DAEMON $DAEMON_OPTS 1>/dev/null 2>&1 &
+  echo $! > $PIDFILE
+ 
+  sleep 2
+  pgrep -f $DAEMON >/dev/null 2>&1
+  RETVAL=$?
+  if [ $RETVAL -eq 0 ]; then
+    success; echo
+    touch $LOCKFILE
+  else
+    failure; echo
+  fi
+  return $RETVAL
+}
+ 
+stop() {
+  local pids=$(pgrep -f $DAEMON)
+  if [ -z "$pids" ]; then
+    echo "$NAME is not running"
+    RETVAL=0
+    return 0
+  fi
+ 
+  echo -n $"Stopping $NAME: "
+  killproc -p ${PIDFILE} ${NAME}
+  RETVAL=$?
+  echo
+  [ $RETVAL = 0 ] && rm -f ${LOCKFILE} ${PIDFILE}
+}
+ 
+reload() {
+  echo -n $"Reloading $NAME: "
+  killproc -p ${PIDFILE} ${NAME} -HUP
+  RETVAL=$?
+  echo
+}
+ 
+rh_status() {
+  status -p ${PIDFILE} ${DAEMON}
+}
+ 
+# See how we were called.
+case "$1" in
+  start)
+    rh_status >/dev/null 2>&1 && exit 0
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    rh_status
+    RETVAL=$?
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  reload)
+    reload
+  ;;
+  *)
+    echo "Usage: $SCRIPTNAME {start|stop|status|reload|restart}" >&2
+    RETVAL=2
+  ;;
+esac
+exit $RETVAL
+
+​```sh
+chmod a+x /etc/init.d/v2ray
+chkconfig v2ray on
+service v2ray start
+curl --socks5-hostname 127.0.0.1:1080 www.google.com
+
+## 部署
+
+```
+ vi /etc/v2ray/config.json
+ service v2ray restart
+
+ cd /home/BMS
+ git pull
+ git checkout dev
+ cd Library
+ dotnet clean
+ dotnet restore
+ cd /home/BMS/Library
+ nohup dotnet run &
+
+  yum install nuget
+  nuget config -set http_proxy=http://127.0.0.1:10808
+ dotnet add package DevExpress.Document.Processor -s   https://nuget.devexpress.com/iiG3Fp4gQA3E6dRGeVVhOXhfhswueGzf1zg44XYmsbKq8ZgwhL/api
+
+ fuser -n tcp 5123
+# 暂时没什么安全关闭命令
+ https://stackoverflow.com/questions/43306332/stop-a-running-dotnet-core-website-running-on-kestrel
+```
+
+## 表单验证
+
+Hi,
+You can use regular expressions and their quantifiers to specify the TextEdit's input pattern and its length. For example:
+.{20,} - this mask allows a user to input at least 20 characters;
+.{30} - this mask requires a user to input exactly 30 characters;
+
+```
+.{20}|.{10}
+```
+
+```
+<TextEdit Pattern="[A-Za-z]{3}">
+```
+
+
+
+[样本](https://www.mikesdotnetting.com/article/191/validation-in-razor-web-pages-2)
+
+```
+@{
+    var result = "";
+    Validation.Add("firstname", 
+        Validator.Required("You must provide a first name"), 
+        Validator.StringLength(10, 0, "No more than 10 letters")
+        );
+    Validation.RequireField("lastname", "Gimme your Last name!");
+    Validation.Add("birthdate",
+        Validator.Required(),
+        Validator.DateTime()
+        );
+    Validation.Add("webaddress", 
+        Validator.Required("URL is required"),
+        Validator.Url("Must be a valid web address")
+        );
+    Validation.Add("email", 
+        Validator.Regex(@"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$", 
+        "Invalid format for an email address")
+        );    
+    Validation.Add("number", 
+        Validator.Required("Make sure you say how many you want"),
+        Validator.Range(1,4, "Must be between 1 and 4")
+        );
+    Validation.RequireField("password", "Password cannot be empty");
+    Validation.Add("password2", 
+        Validator.Required("Put your password in here again"),
+        Validator.EqualsTo("password", "Must be the same as your password")
+        );
+    if(IsPost){
+        if (Validation.IsValid()) {
+            result += "<p>You entered:</p>";
+            foreach(string item in Request.Form){
+                result += item + ": " + Request[item] + "<br />";
+            }
+        }
+        else{
+            ModelState.AddFormError("There are some errors with your submission"); 
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <link href="~/Content/StyleSheet.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <fieldset>
+            <legend>Web Pages 2 Validation</legend>
+            <form method="post" action="">
+                <div class="row">
+                    @Html.Raw(result)
+                    @Html.ValidationSummary(true)
+                </div>
+                <div class="row">
+                    <label class="label" for="firstname">First Name:</label>
+                    <span><input name="firstname" type="text" value="@Request["firstname"]" /></span>
+                    @Html.ValidationMessage("firstname")
+                </div>
+                <div class="row">
+                    <label class="label" for="lastname">Last Name:</label>
+                    <span>@Html.TextBox("lastname", Request["lastname"])</span>
+                    @Html.ValidationMessage("lastname")
+                </div>
+                <div class="row">
+                    <label class="label" for="birthdate">Birth Date:</label>
+                    <span>@Html.TextBox("birthdate", Request["birthdate"])</span>
+                    @Html.ValidationMessage("birthdate")
+                </div>
+                <div class="row">
+                    <label class="label" for="webaddress">Web Address:</label>
+                    <span>@Html.TextBox("webaddress", Request["webaddress"])</span>
+                    @Html.ValidationMessage("webaddress")
+                </div>
+                <div class="row">
+                    <label class="label" for="email">Email:</label>
+                    <span>@Html.TextBox("email", Request["email"])</span>
+                    @Html.ValidationMessage("email")
+                </div>
+                <div class="row">
+                    <label class="label" for="number">Number Required:</label>
+                    <span>@Html.TextBox("number", Request["number"])</span>
+                    @Html.ValidationMessage("number")
+                </div>
+                <div class="row">
+                    <label class="label" for="password">Password:</label>
+                    <span>@Html.Password("password")</span>
+                    @Html.ValidationMessage("password")
+                </div>
+                <div class="row">
+                    <label class="label" for="password2">Password Again:</label>
+                    <span>@Html.Password("password2")</span>
+                    @Html.ValidationMessage("password2")
+                </div>
+                <div>
+                    <span class="label">&nbsp;</span>
+                    <span><input type="submit" value="Submit" /></span>
+                </div>
+            </form>
+        </fieldset>
+    </body>
+</html>
+```
+
+
+
+[ValidationMessage用于信息提示](https://blog.stevensanderson.com/2019/09/04/blazor-fluentvalidation/)
+
+app验证案例：https://remibou.github.io/Client-side-validation-with-Blazor-and-Data-Annotations/
+
+[中文介绍验证](https://blog.csdn.net/boonya/article/details/84567498)
+
+- `[CreditCard]`：验证属性是否具有信用卡格式。
+- `[Compare]`：验证某个模型中的两个属性是否匹配。
+- `[EmailAddress]`：验证属性是否具有电子邮件格式。
+- `[Phone]`：验证属性是否具有电话格式。
+- `[Range]`：验证属性值是否落在给定范围内。
+- `[RegularExpression]`：验证数据是否与指定的正则表达式匹配。
+- `[Required]`：将属性设置为必需属性。
+- `[StringLength]`：验证字符串属性是否最多具有给定的最大长度。
+- `[Url]`：验证属性是否具有 URL 格式。
+
+```
+[RegularExpression(@"^(0|[1-9][0-9]*)$", ErrorMessage = "MaxPrice的格式不正确")]
+```
+
+就得写 "c:\\abc\\d.txt"，如果我们不希望 C# 将其识别为[转义字符](https://www.baidu.com/s?wd=转义字符&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao)，就可以加 @ 符号，写成 @"c:\abc\d.txt"
+
+
+
+# HUSTOJ/ACM 
+
+https://www.cnblogs.com/morya/p/9688421.html
+
+```
+docker pull registry.cn-shanghai.aliyuncs.com/shiningrise/hustoj
+
+docker run -d -it --name hustoj -p 9900:80 --privileged registry.cn-shanghai.aliyuncs.com/shiningrise/hustoj:latest
+
+
+使用本地磁盘volumn
+docker因为每次启动都是全新，为持久化，可以挂载一个本地目录给docker image。
+
+标准执行方式
+
+docker run -d -it \
+    -v /data/docker/docker-wxy/data:/data \
+    --privileged \
+    --name hustoj \
+    -p 80:80 shiningrise/hustoj:latest
+
+docker测试安装
+
+    docker run -d -it --name hustoj -p 80:80 --privileged shiningrise/hustoj:latest
+
+仅安装C++版本
+
+    docker run -d -it --name hustoj -p 80:80 --privileged shiningrise/hustoj:cpp
+
+ $ docker ps
+CONTAINER ID        IMAGE                                                         COMMAND                  CREATED             STATUS              PORTS                  NAMES
+f111112222333        registry.cn-shanghai.aliyuncs.com/shiningrise/hustoj:latest   "/usr/local/bin/dock…"   About an hour ago   Up About an hour    0.0.0.0:9900->80/tcp   hustoj
+
+docker exec -it f111112222333 bash ## f111112222333 是当前docker 映像执行的实例id 
+docker exec -it fee950d39e0f bash
+
+cat /home/judge/etc/judge.conf
+
+OJ_USER_NAME=debian-sys-maint
+OJ_PASSWORD=QwJp5G8VuNpJuoPf
+debian-sys-maint
+
+mysql -udebian-sys-maint -pQwJp5G8VuNpJuoPf
+```
+
+https://www.cnblogs.com/yoke/p/7232145.html
+
+```
+use jol;
+show tables;
+
+insert into privilege values('1001','administrator','N');// 插入一个字段，其中此处的values（）下的三个参数代表的意思是：帐号，权限，最后一个不清楚。
+select * from privilege;   //查看字段
+Ctrl+D退出MySQL管理
+
+values('admin','administrator','N')中的'admin'其实就是我们上面注册的帐号，如果你注册的帐号时haha，那么此处应该调整为values('haha','administrator','N')。
+然后从HUSTOJ上注销，重新登录，就可以发现刚才的帐号已经是管理员权限了。
+insert into users(user_id,volume,language,nick,password)values('150219',1,1,   'DanielHu','123123');
+delete from users where school like 'your%';
+
+```
+
+
+
+
+
+ 
+
+```
+
+```
+
+
+```

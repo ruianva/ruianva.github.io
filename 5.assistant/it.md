@@ -1,41 +1,141 @@
 # 概述
 
-学校的`行政`工作通常会划分为`后勤/教辅/教务`：
+## 浅出“数字化校园”(1/5)
 
-- 从HR角度，一方面要考虑挽留策略，另一方面需要考虑 工作内容的可交接性（每个人都需要是可替代的）；
-- 每年/半年召开一次后勤动员会；
+温馨提示：若您是一位教育从业者，学习`数字化校园`的意义除了应付行政任务，您很有可能在此之中获取到一些意想不到的工作中省时省力的方法。
+
+简单瞥一眼`wiki`中对`数字化校园`的定义：
+
+```
+数字化校园是以数字化信息和网络为基础，在计算机和网络技术上建立起来的对教学、科研、管理、技术服务、生活服务等校园信息的收集、处理、整合、存储、传输和应用，使数字资源得到充分优化利用的一种虚拟教育环境。
+```
+
+撇掉专业词汇就是：
+
+```
+将校园活动（教学、科研、管理等）产生的信息收集起来进行应用....
+```
+
+场景一：招生办公室需要每年通过年级组提供高校录取数据来制喜报
+
+![1578206082207](media/1578206082207.png)
+
+这个过程就体现了——`教学(活动)`产生`学生测评(信息)`，收集后用于`招生推广(应用)`。
 
 
 
-我们也按这三个类别涉及到的`IT单元`进行规划：
+## 浅出“数字化校园”(2/5)
 
-- `后勤`：
-  - 职责：提供`教职工`教学/办公所需的`物资`的，制定`必要的审批流程`保障企业成本；
-  - 重点：配合管理校园资产表（以期管理并减少资产浪费），与`财务`对接规则；
-- `教辅`：
-  - 职责：
-    - 协助`教师`课业以外的教学辅助，如：
-      - 学生心理辅导
-      - 家长信息管理（如接待、访谈收集）
-      - 学生信息管理（如学生诚信、态度类事件）
-      - 培训交流
-    - 协助`学生`提高学习的辅助系统，如：
-      - 云课堂：即以课堂录播重放为中心；
-      - 图书馆：拓展世界视野；
+巧妇难为无米之炊，没有数据/信息的收集，数字化信息应用就没有根基。
+
+我们通过`2年级`同学小明一天的校园生活为例，来看校园的哪些地方可以产生我们感兴趣的数据/信息：
+
+```
+8:08 AM:  小明气喘吁吁跑到学校（因为还有2分钟就迟到了），班长已经开始拿着一个`小本子`记录未到校的同学名字了，他赶紧过去让班长把他的名字划掉。
+
+8:10 AM：小明拉开书包，把各个学科的作业交上来，粗心的小明忘了在数学作业纸上写上姓名；
+
+9:50 AM：课间，数学老师开始到班级里抓`未交作业`以及`未订正作业`的同学，（小明也不幸被批评，因为没写名字），此外数学老师还通过微信将`连续2天未交作业`同学的家长挨个电话问候了一遍，并转告给班主任......
+
+10:00 AM：英文课上，小明和几个顽固分子在课堂里开小会，小明被英文老师提醒了两次。
+10:40 AM：英文课下课后，英文老师本打算把小明与同桌上课的情况告诉给班主任，但是刚好班主任不在位置上，事情一多，英文老师就忘了反馈这一信息。
+
+16:28 PM：离学校大门关门还有2分钟，小明赶紧丢下羽毛球跑出校门。
+17:00 PM：粗心的小明忘记记录今天的`数学作业`，无奈之下，小明妈妈用微信问数学老师作业。恰好，数学老师今天已经和他的太太出去约会了。
+21:30 PM：小明妈妈收到了数学老师发来的作业通知。
+21:40 PM：小明开始写数学作业.........
+
+------
+日复一日的循环。
+```
+
+回顾小明这一天活动产生的信息：
+
+- `到校/离校时间`：通常班主任对此信息感兴趣，这可能反映了小明昨晚的`睡眠`如何，如果小明频繁迟到，那么我们需要向其家长询问他近期`是否有拖延症`；当然`学校后勤`也会对这个信息感兴趣，因为他们需要确认是否已经所有的同学已经离开校园。
+
+- `未交作业/未订正作业/作业未写姓名`学生：`各科任老师`需要及时记录学生的作业情况，对于连续未交作业的学生需要向`学生家长`以及`班主任`同步这部分信息；
+
+- `课堂表现`：这里不仅包括`桌面混乱、课堂违纪、回答消极`的记录😩，还应包括`桌面整洁、听课专注、回答积极`😀的记录（班主任可根据这些`电子信息`在教室后设置了一个红黑榜进行及时的激励/惩戒）。
+
+- `每日作业内容`：虽然科任老师已经在课上或课后让科代表把作业写在黑板上，但是总有一些同学会忘记记录作业，如果`作业内容`若已经固化在教案里，那么完全可以通过`电子版作业`形式按周/月的方式批量布置下去，有变化也可以在微调。
+
+由于教师日常忙碌的工作节奏，通过
+
+- 纸张
+
+- 口头反馈
+
+- excel表格
+
+`收集`、`长期保管`上述日复一日的信息是十分困难的。我们是否有一种在有限的`条件`下就能`简单/高效`的收集这些信息？
+
+
+
+实际上这里我们无法得到`到校/离校时间`，班长在班级里统计到的只有`迟到人数`；
+
+## 浅出“数字化校园”(3/5)
+
+`线上课堂`需要怎样的一些装备？
+
+硬件方面，老师们需要类似线下教室的装备：
+
+- 一台使用时间3年以内的电脑
+- 绘画版（[wacom CTL672](https://s.taobao.com/search?q=%E6%95%B0%E4%BD%8D%E6%9D%BF&imgfile=&js=1&stats_click=search_radio_all%3A1&initiative_id=staobaoz_20200218&ie=utf8&sort=sale-desc)、[汉王 创艺高手](https://item.taobao.com/item.htm?spm=a230r.1.14.1.579b5cae2b4aJk&id=533181948979&ns=1&abbucket=10#detail)）：（数学/科学课替代鼠标在屏幕上写字）
+- 麦克风：如果需要制作标准录播课，建议购买，推荐使用方式像麦克一样的[MicW i436](http://detail.zol.com.cn/404/403516/param.shtml)
+
+软件方面：
+
+- [教室直播软件](http://site.scnu.edu.cn/a/20200209/1200.html?from=timeline)（dingtalk/classin）
+  - **直播客户端、超星学习通同步课堂、雨课堂、中国大学MOOC**
+  - **优课联盟、优学院、高校邦平台、好大学在线**
+  - **腾讯课堂、钉钉、CCtalk、UMU、智慧树-在线大学**
+- 作业打卡工具
+  - 微信小程序、钉钉
+
+
+
+场景二：全校教师在学期期末向班主任提供本学期学科成绩、评语，班主任制作`成绩报告单`后与家长的反馈依据：
+
+各学科老师通常是在学期期末时间加班加点给各个学生汇总成绩（往往是做成一个excel表格），班主任再进一步汇总提交给。
+
+负责`产生信息`的方式往往是负责`学科教师`，`教务`：
+
+在这一传统的活动过程中，收集是手工进行的；手工录入。
+
+ `教师的日常教学活动`：如学生管理（向班主任、家长反馈，严重点上升到校级训辅）、组卷、改卷、办公；
+
+通常能理解上述抽象、且专业的定义的人士往往局限在部分学校的高层以及主管部门的专业人士。而对于广大基层老师、行政人员（包括`IT行政，技术装备科基础岗`）。
+
+为普通`行政事务`服务（如`后勤/教辅/教务`），此部分可通过借鉴/采购第三方`财务`/`物业`管理软件以及`标准规范`；
+
+- `后勤`：提供`教职工`教学/办公所需的`物资`管理流程，制定`必要的`的`审批流程`保障企业成本，配合管理校园资产表（以期管理并减少资产浪费）与`财务`、`董事`定期对齐；
+
+- 设置HR，全面考虑所有员工岗位的工作的`可交接性`（每个人都需要是可替代的）；
+- 设置PM角色，对各行政人员的周报、月报进行梳理并与；
+- 除了挽留策略，另一方面需要每年/半年召开一次后勤动员会；
+
+
+
+- `教辅`：协助`教师`课业以外的教学辅助，如：
+  
+  - 学生心理辅导
+  
+  - 家长信息管理（如接待、访谈收集）
+  - 学生信息管理（如学生诚信、态度类事件）
+  - 培训交流
+  
+  - 协助`学生`提高学习的辅助系统，如：
+    - 云课堂：即以课堂录播重放为中心；
+    - 图书馆：拓展世界视野；
+  
   - 重点：围绕各类信息收集的电子化收集：包括`图书馆电子借阅系统`、教师通道，`学生管理系统`；
-- `教务`：
-  - 职责：制定`教学计划`，`课程培养方案`，以及`教学方案`
-  - 重点：
+- `教务`：职责/制定`教学计划`，`课程培养方案`，以及`教学方案`；
+  
+  
 
+新入职`IT行政`：
 
-
-## tips：
-
-处于IT建设初期的行政人员，往往期望大刀阔斧的对消耗教师职工较大精力进行改革。企图借鉴主流的`财务`/`物业`行业的IT实践经验，利用尽可能的`IT基础设施/规范` 来提高便捷的资源共享以及业务能力。
-
-但请小心：
-
-- 所有`IT组`以外的教职工可能对IT系统、软件操作等都不是很内行。
+- 以外的教职工可能对IT系统、软件操作等都不是很内行。
 - 即使你提供了文档、操作视频，他们也很可能无法第一时间进行学习培训。
 - `任何微乎其微的学习成本`都会对他们产生许多心理压力，需要`IT组`能温柔的对待他们。
 
@@ -239,6 +339,12 @@
 
 
 
+# 报销
+
+
+
+
+
 ## BIOS
 
 开机F2进入
@@ -410,9 +516,23 @@ DDR3 1866:512MB
 
 
 
+# 批量运维管理：DISM++
+
+多session
+
+Start->Administrator tools->Remote Desktop Services->Remote Desktop Session Host Configuration
+
+取消：Restrict each user to a single session
+
+43QM8-N693D-TFDY7-9QXHM-X4VY4
+
 # Platform
 
 ## [OS: hyper-v server](https://www.microsoft.com/en-us/evalcenter/evaluate-hyper-v-server-2019)
+
+安装了license verse
+
+管理->添加->远程桌面服务，HOST/授权/虚拟化主机
 
 ### 安装
 
@@ -619,6 +739,8 @@ https://bbs.archlinux.org/viewtopic.php?id=185736
 
 ![1565100948365](media/1565100948365.png)
 
+
+
 ## 批量制作脚本
 
 ```powershell
@@ -804,59 +926,8 @@ Start-SCVirtualMachine -VM $VM_Name
 
 os推荐使用[centos](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso)
 
-- [docker](https://www.jianshu.com/p/00e162bf587a)
 
-删除已安装的Docker
-
-```
-# Uninstall installed docker
-sudo yum remove docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
-                  docker-selinux \
-                  docker-engine-selinux \
-                  docker-engine
-```
-
-配置阿里云Docker Yum源
-
-```
-# Set up repository
-sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-
-# Use Aliyun Docker
-sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-```
-
-安装 Docker CE
-
-更新 yum 软件源缓存，并安装 docker-ce。
-
-
-
-```
-sudo yum makecache fast
-sudo yum install docker-ce
-```
-
-启动Docker服务；
-
-```
-# Start docker service
-systemctl enable docker
-systemctl start docker
-
-yum -y install epel-release python-pip pip
-pip install scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install docker-compose
-
-sudo systemctl restart docker
-
-#配置gfw sslocal
+#配置github 加速gfw sslocal
 
 vi ~/.gitconfig
 [http]
@@ -866,77 +937,11 @@ vi ~/.gitconfig
 
 #执行安装
 https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud
-```
 
 
 
-# Software
-
-## 流媒体服务
-
-- 方案一： DV现场（含现场互动）
-
-DV -> OBS STUDIO -> 万股
-
-OBS STUDIO显示器 游戏黑屏
-
-WIN->设备管理器，界面拉到底下有一个显示适配器
-
-一个是集成显卡，一个是独立显卡。你禁用独立显卡就好了。 录好视频后启动再启用独立显卡。
 
 
-
-- 方案二：屏幕（纯技术培训类）
-
-
-## NDI
-
-1. 安裝 OBS
-2. 安裝 OBS-NDI
-   1. 會要求安裝 [ NDI 3.0 Runtime](http://new.tk/NDIRedistV3)
-3. 安裝 [NewTek Tools](https://www.newtek.com/ndi/tools/) ，只需要安裝 portable 版本即可，我們只需要 NDI Studio Monitor
-
-當安裝完以上的東西後，應該會被要求重啟電腦。電腦重新啟動後，就可以打開 OBS 的程式
-
-1. 在 Tools 的地方，點選 NDI Output settings
-
-[![img](https://i.imgur.com/cjOOe7P.png)](https://i.imgur.com/cjOOe7P.png)
-
-1. 勾選 【Enable NDI Output】
-
-[![img](https://i.imgur.com/07VTll2.png)](https://i.imgur.com/07VTll2.png)
-
-1. 這樣 OBS 就會將你的訊號，用 NDI 的模式發送出去，只要在你的**區域網域**內，支援 NDI Input 的軟體或導播機，都可以搜尋的到
-
-2. 開啟【NewTek NDI Studio Montiro】
-
-   [![img](https://i.imgur.com/EocvMNA.png)](https://i.imgur.com/EocvMNA.png)
-
-3. 選擇訊號來源
-
-[![img](https://i.imgur.com/QLTueoJ.png)](https://i.imgur.com/QLTueoJ.png)
-
-1. 檢視 OBS NDI 訊號輸出結果
-
-   [![img](https://i.imgur.com/PvcqWiC.png)](https://i.imgur.com/PvcqWiC.png)
-
-2. 由於我們要將這一個視窗透過 ZOOM 分享的方式，顯示給其他與會者看。所以還有兩個地方要做調整
-
-   1. 視窗的 border 要隱藏
-
-      [![img](https://i.imgur.com/uZsxSas.png)](https://i.imgur.com/uZsxSas.png)
-
-   2. 聲音音量的顯示，要將 VU Meter 關掉
-
-      [![img](https://i.imgur.com/8PASrQp.png)](https://i.imgur.com/8PASrQp.png)
-
-3. 完成設定，剩下的就是用 Zoom 分享這一個視窗應用程式
-
-這裡要注意一點，當你點選 Hide Window 時，該視窗就無法再移動了，所以如果有第二顆螢幕或是第二台電腦時，這一個分享的動作，可以在另外一個地方進行。
-
-
-
-https://github.com/Palakis/obs-ndi/releases/tag/4.6.0
 
 
 
@@ -1044,154 +1049,27 @@ perl -e 'for my $year(12..20) for my $class(1..3) {for ( 1..36 ) {$num=(sprintf 
     
   
 
-# 报告单
-
-配置以下工作串联，
-
-- 确定评价项
-
-
-
-
-
-报告单，就是学生的学期评价表，打分通常有如下几种打分方法：
-
-- 3分：优异、尚可、不达标
-
-- 5分：优、良、常、可、不达标
-
-- 7分：`4分`为及格线，`7分`为满分；
-
-  
-
-使用7分制评分（以0.5分间隔进行打分）+建设性评语；
-
-![1560307654488](media/1560307654488.png)
-
-- 每个`科目`由**最多**8个的`1级评价项`构成，如：
-
-  - 小学科目`品格与习惯`，由`井然有序,自制,专注,感恩,尊重,尽责,课前准备,发言 ,善于倾听,自我调节,服从性`构成；
-
-- 每个`1级评价项目`可进一步由最多12个`2级评价项`构成：
-
-  - 如科目`品格与习惯`的1级评价项`井然有序`由`11个科任老师评定`构成；
-
-
-
-各班主任网络共享表格作为数据源收集，类似大家熟悉的EXCEL；
-
-进而通过一组docx4j程序批量导出文档的工具；
-
-## 🔗链接
-
-- [打分表](https://docs.qq.com/sheet/DWGVsbXBLVkR6YnBB?opendocxfrom=admin&tab=BB08J2&coord=D10%24D10%243%240%24184%240)
-
-- [词汇表](https://docs.qq.com/sheet/DWGV4ZGlYcWh2ZnN2?opendocxfrom=admin&tab=BB08J2&coord=A1%24A1%240%240%241%240)
-
-  
-
-## 填写流程介绍
-
-- 配置较差的电脑使用`网络共享表格`会比较卡，各教师尽量在自己本地编辑好再粘贴到`共享表格`；
-
-  （**需登陆`企业微信`才能输入**）；
-
-- 关于评语：
-
-  - 用`鼓励`代替`赞美`：
-    - 如`积极活跃`、`充满活力`等代替`活泼可爱`；
-    - 用`快速反应`，`有潜力`等代替`聪明`、`有天赋`。
-  - 不用`老师喜欢你......`这样的句式，以免造成给孩子要`取悦他人`的错误观念；
-    - 可以改为“老师欣赏你的认真”，
-    - “你认真上课的状态，让老师也感到被尊重”，
-    - “老师谢谢你的帮忙”等。
-  - 注意`“的”`、`“地”`、`“得”`的使用；
-  - 注意标点符号的使用。
-
-- 关于打分
-
-  - 以7分满分，0.5为最小单位；
-  - 建议先在本地电脑Excel处理好，然后在粘贴上去比较方便；
-
-- `1级评价项打分表` 
-
-  - `科目栏`：
-    - `技能 品格与习惯 作业`
-    - `英文 中文 数学 科学 社会 体育 美术 音乐`
-    - `媒体教育 生活教育 道德与法治`  
-    - 3（品德）+  8（核心）+ 3（辅助）
-
-- `2级评价项打分表`：
-
-  - 当前仅对`小学班级`使用，即`技能 品格与习惯 作业`评价项的进一步细化打分项（由相关各科老师进行打分表）；
-
-  ![1560991214774](media/1560991214774.png)
-
-- 网络共享表格常用快捷键
-
-  - 按比例放大收缩：`ctrl + +/-`
-
-
-## Q&A
-
-### 评语段内容导致单元格高度变长
-
-![1560131563063](media/1560131563063.png)
-
-- 在Excel内是这样设置的：
-
-  - 内容太多，导致纵向拉太长
-
-    ![1547695117141](media/1547695117141.png)
-
-  - 横向超长，挡住旁边的单元格。（网络共享不具备这个功能）
-
-   ![1547695123847](media/1547695123847.png)
-
-## [docx4j](https://53873039oycg.iteye.com/blog/2339120)
-
-程序思路是通过hashmap成绩替换进行覆盖doc模板；注意值里不能又特殊符号(如`&`)；
-
-导入`科目评价项表`，通过`report1Service.groovy`程序解析`词汇表.xlsx`；
-
-每个年级对学生的评估都不一致，如何能在一张表格中体现呢：
-
-```groovy
-static int SUBJECT_DIM1_NUM = 8 // 1级评价项
-static int SUBJECT_DIM2_NUM = 14 // 2级评价项
-static int SUBJECT_DIM1_SUM_NUM = 4 // 总评 评语
-static int SUBJECT_DIM1_ALL_NUM = SUBJECT_DIM1_NUM + SUBJECT_DIM1_SUM_NUM // 总评 评语
-static int META_COL_NUM = 6 // 姓名等其他元数据项
-static def metas = [:]
-static def qualitySubjects = "技能 品格与习惯 作业".split(/\s/)
-```
-
-对于s3
+# 测试卷归档
 
 ```
-mergeSubjects // 对于>8个1级评价项的合并处理
-qualitySubjectItemIndex // 对于2级评价项的序列统计
-
-def qualitySubjectItemIndex = qualitySubjectItemHash[qualitySubjectItem] //前后相串
+ gswin64c -dNOPAUSE -dBATCH -sDEVICE=jpeg -r300 -sOutputFile=D:\\1.doc\\va\\1.math\\3.单元测试\\单元测试\\T06\\T06_%02d.jpg .\T06.pdf
 ```
+   "-dQUIET",    安静的意思，指代执行过程中尽可能少的输出日志等信息。（也可以简写为“-q”）
+    "-dNOSAFER",    通过命令行运行
+    "-dBATCH",    执行到最后一页后退出
+    "-dNOPAUSE",    每一页转换之间没有停顿
+    "-dNOPROMPT",    没有相关提示                       
+    "-dFirstPage=1",    从第几页开始
+    "-dLastPage=5",     到第几页结束  
+    "-sDEVICE=pngalpha",    转换输出的文件类型装置，默认值为x11alpha
+    "-g720x1280",    图片像素(-g<width>x<height>)，一般不指定，使用默认输出
+    "-r300",    图片分辨率（即图片解析度为300dpi），默认值好像是72(未测试证实)
+    "-sOutputFile=/opt/shanhy/error1png/%d.png",    图片输出路径，使用%d或%ld输出页数
 
 
 
-## 教育部素质评价
 
-浙江省中小学综合素质评价[链接](https://yjglpt.zjedu.gov.cn/logondngl.action)
 
-账号：`xxx042519`
-
-密码：账号+`...`
-
-6-7 A
-
-5-6 B
-
-4-5 C
-
-<4  D
 
 # BI报表
 
@@ -1301,3 +1179,26 @@ STUNO SEMESTER SUBJECT DIM1 WEIGHT DIM2
 
 如果家长没反馈，达不到效果，则应该明确责任；
 
+
+
+
+
+# 云桌面增加
+
+- 在数据库表v2中预分配`IP`，建议是和vano一致，创建虚拟机记录`静态`MAC，设置到路由器，最后再提交到数据库中；
+
+- ![1577256861939](media/1577256861939.png)
+
+```
+  CREATE view va2v as 
+  SELECT VANO||CNNAME,substr("云桌面命令", 25, 13) as c1,'00-15-5D-E4-20-'||MAC as v2 FROM "va2" where "云桌面命令" like '%192%' 
+  AND LENGTH(MAC)>0 
+  order by 1;
+  select * from va2v;
+
+```
+
+
+  ```
+
+  ```
