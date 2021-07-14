@@ -9,22 +9,19 @@
       - 姜经理：52330 381MJ 93034 88F 
 
       - 350元：家用500M+100M
-
-          - 假：20m
-
-      - 599元：50m，100m、1000M
-
-          - 100元
-
-      - 企业宽带：家用上行速度1000M/100M，专线120/月，
-
-          - 温州20m 2q，50m 4q（20元）；
-    - 
+- 假：20m
+  
+- 599元：50m，100m、1000M
       
-      ​    
-
+  
+    - 100元
+    
+- 企业宽带：家用上行速度1000M/100M，专线120/月，
+      
+    - 温州20m 2q，50m 4q（20元）；    
+      
   - 电信故障：10000
-
+  
   - 如何设置网络红灯
 
   - 公安
@@ -157,6 +154,71 @@ http://192.168.1.1:8080/
   - 057753106762 /axx1xx
 - 500M(192.168.1.9/24) sm5by
   - 057740422934/axx1xx
+
+# 重启后的问题
+
+```shell
+#--22--
+cd /root/smart_rtmpd && nohup ./smart_rtmpd & # voice,端口
+su - postgres -c "/usr/pgsql-11/bin/pg_ctl -D /home/pgdata/ -l /home/pgdata/logfile restart" #pgsql
+service elasticsearch restart
+service nginx restart # record nginx 
+cd /home/va-strapi && forever start -c "yarn develop" ./ #strapi 
+cd /home/ECHO/EKHO &&  nohup dotnet run & # ECHO
+lsof -i:7001 #先干掉才能重启
+cd /home/va-midway && forever start -c "npm run dev" ./ # midway 80
+service docker restart
+#HASURA、#minio
+
+#mail
+cd /home/mailsender && forever start -c "node app.js" ./
+forever list
+
+#--12--
+cd /home/ps
+nohup java -cp ./lib/*:./ps_bg-1.3.jar org.yasz.praiseslowly.PraiseslowlyApplication --server.port=8080 &
+
+docker restart  `onlyoffice/documentserver`
+
+
+```
+
+
+
+# 软路由 软网关
+
+OpenWrt 19.07.3、爱快、ROS
+海蜘蛛、飞鱼星、Sangfor
+
+ros主路由和openwrt二级路由组合
+
+VPN路由器->( 网络行为管理 )->三层交换机；
+
+CSV和TXT格式 导出后你手动存NAS就行
+
+
+
+
+
+　软网关方案就是把主机当作网关，网内出去的数据包都要经过这台电脑，由这台电脑转发至由器，再由由器转发出去。对于采用这种方式来进行的软件最大的优势就是能够对数据进行绝对的，缺点就是在中型或大型网络中，由于主机本身性能所限，对网速有较大影响，另外，如果主机一旦出现宕机等情况，会造成整个网络中断。这种方法适合对上网行为管理要求严格，且被电脑数量不太多（电脑数量适合在200台以下）的企业使用。
+
+　　ARP方式就是利用主机一直发包，将主机的MAC地址伪装成由器的MAC地址，把其它电脑的上网数据“”到这台主机上来，从而获得其他电脑的上网数据进行分析及控制，对于允许的上网数据，则通过主机转发至由器上正常传送。
+
+　　ARP方式的优点就是可以在企业局域网中任意一台电脑上部署，对于使用者来说安装非常方便。但它的缺点也是显而易见的，如果被电脑安装ARP防火墙后，就可能会失去作用，另外上网数据由主机转发，也会影响整个网络的速度。像聚生网管就是采用该方式来进行的，这种方案适合电脑数量不多（数量在200台以下），且者便于隐蔽（像一些公司老板希望在办公室内对员工上网行为进行管理）的小型公司使用。
+
+　　3.旁侦听型
+
+　　旁侦听型就是通过共享式HUB或镜像交换机自身的功能，把出口数据复制一份到主机连接的那个端口，以达到的目的。在电脑数量较少的情况下，共享式HUB能完全承载小型网络，在网络规模较大时，通过镜像交换机的端口镜像功能也完全能够承载。因此旁听侦听型的优点是对网络速度影响较小，同时管理的效果也很出色。采用这种方法的代表有LaneCat网猫，对于中大型企业比较适用。
+
+
+
+　　软件方案实例剖析
+
+
+
+
+
+　　在了解了上网行为管理软件的相关技术和方式后，对于企业或机关部门来说，如何根据自己的实际情况来进行部署呢？下面就以两个最常见的案例进行分析，希望能给打算采购部署上网行为管理软件方案的用户一定指导。
 
 
 
@@ -534,39 +596,57 @@ add app->only office
 
 # 树莓派
 
-## [客户端 修改镜像](https://mirror.tuna.tsinghua.edu.cn/help/raspbian/)
+## 其他设置
+
+### 设置flatpak
+
+```
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+
+### [客户端 修改镜像](https://mirror.tuna.tsinghua.edu.cn/help/raspbian/)
 
 ```
 sudo vi /etc/apt/sources.list
 deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi
 deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi
-
 sudo vi /etc/apt/sources.list.d/raspi.list
-
 deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ stretch main ui
 deb-src http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ stretch main ui
-
 sudo apt-get update
-
 ```
 
 连接`192.168.1.1`
 
+## 删除光标 息屏时间设置
+
+```sh
+vi /etc/lightdm/lightdm.conf file
+/xserves-command and 
+edit it to start the X server without cursor. and make it look like this 
+xserver-command=X -nocursor
+#取消注释
+xserver-command=X -s 0-dpms
+```
 
 
-## 输入法：
+
+## 输入法安装
 
 ```
 sudo apt-get autoremove fcitx-
 sudo apt-get install fcitx-sunpinyin
 ```
 
-## 键盘-英语（美国）
+### 键盘-英语（美国）
 
 `killall fcitx-qimpanel`
 
-重置桌面
+## 重置桌面
+
 ```
+Ctrl+Alt+F1
+
 sudo rm -rf ~/.config/lxpanel/LXDE-pi
 ```
 
@@ -590,19 +670,16 @@ VNC password
 
 
 
-## SSH创建连接
+## 故障
 
-## 莫名其妙`connection abort'`
+### SSH创建连接莫名其妙`connection abort'`
 
 ```
 sudo rm /etc/ssh/ssh_host_*
-
 sudo dpkg-reconfigure openssh-server
 ```
 
-
-
-## Remote DPMSTSC
+## 快速Remote 
 
 在windows中增加访客用户
 
@@ -694,7 +771,13 @@ Categories=Application;Development;
 StartupNotify=true
 ```
 
-启动桌面后自动运行脚本
+### 不休眠
+
+```
+sudo nano /etc/lightdm/lightdm.conf
+```
+
+## 启动桌面后自动运行脚本
 
 ```
 vi /home/pi/a.sh
@@ -706,7 +789,22 @@ sudo vi /etc/xdg/lxsession/LXDE-pi/autostart
 
 #vi /etc/rc.local
 #sh /home/pi/a.sh
+#cd /home/pi/.config/autostart
+
+可以直接修改
 ```
+
+## 树莓派4执行可文件提示
+
+```
+raspberry  This file seems to be an executable script
+File manager
+Edit
+Preferences
+General
+```
+
+
 
 ## 定时关机
 
@@ -716,13 +814,13 @@ sudo crontab -e
 10 16 0 0 0 /sbin/poweroff
 ```
 
+## vim默认
+
 默认编辑器设置为`sudo vi /etc/vim/vimrc.tiny`
 
 ```
 compatible”改成“nocompatible”
-
 新增一个配置：
-
 set backspace=2 
 ```
 
@@ -757,9 +855,7 @@ sudo make install
 
 ![1566971388449](media/1566971388449.png)
 
-## 远程打铃
-
-### EKHO安装
+## tts EKHO安装
 
 ```
 #官网指导，http://www.eguidedog.net/doc/doc_install_ekho.php
@@ -896,13 +992,7 @@ while (1)
 
 
 
-# WIN10开启远程服务
 
-https://jingyan.baidu.com/article/3052f5a10f1e4e97f31f862b.html
-
-01101014
-
-01101014
 
 # vs IDE
 
@@ -949,7 +1039,7 @@ options.UseNpgsql(Configuration.get...)
 ```
 sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 sudo yum install dotnet-sdk-3.0
-dotnet new blazor -o BlazorHelloWorld
+ new blazor -o BlazorHelloWorld
 cd BlazorHelloWorld
 
 # 开端口
@@ -1340,3 +1430,7 @@ delete from users where school like 'your%';
 
 
 ```
+
+# Own cloud
+
+https://doc.owncloud.com/server/admin_manual/installation/docker/

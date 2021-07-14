@@ -145,18 +145,21 @@ End Sub
 
 # 打印机
 
-## 打印机管理员注意
+## 打印机管理员注意事项
 
-- 用纸条写上"禁止`直接通过线缆`方式接入打印机"放在明显的地方，因为线缆的插拔很容易导致机械故障；
+- 打印机都应具备网口并`设置好固定物理IP`，并以LAN方式接入（打印机禁止以WLAN方式接入网络，网络）。
+
+    -   如果打印机没有网口/没有`物理IP`，那么你必须通过线缆连接到一台共享电脑才能使用，你还必须在线缆上声明"禁止`禁止插拔线缆`方式接入打印机"。
+    -   则直接以线缆连接`公用电脑`连接，并在线缆上注明`勿插拔`标示；
+
+    因为线缆的插拔很容易导致机械故障，而且如果忘记插回去，那么后面的同事就无法使用这台打印机了。
 
 - 限制打印机直接发现；
   
 - 通过`公用电脑`统一安装驱动并共享出来，这样一个网络内的所有同事都可以方便快捷的安装，具体操作办法见`设置共享打印机`章节；
   
-- 所有打印机都`设置了物理IP`，并以LAN方式接入（打印机禁止以WLAN方式接入网络，网络）。
-
-  - 对于没有网口的打印机，则直接以线缆连接`公用电脑`连接，并在线缆上注明`勿插拔`标示；
-
+  
+  
   
 
 ## 打印机驱动安装
@@ -176,13 +179,13 @@ End Sub
 
 若发现多台共享打印机**同时无法使用**；
 
-1.确认是否接入校园wifi；
+1.确认设备是否接入学校网络，无线确认是否接入校园wifi；
 
 2.登陆`\\192.168.1.147 `，若提示，输入账号`lenovo`，密码为空；
 
 3.先使用公用电脑来进行紧急打印，输入登陆账号lenovo，密码为空；
 
-4.联系学校IT；
+4.联系杨家昊(136 98543238)；
 
 ![share](./media/shareprint.gif)
 
@@ -203,35 +206,44 @@ Q&A 弹出
 
 ## 设置共享打印机
 
-- 打印机服务端（203门口台式机）
+- 无策略组 gpedit.msc
+    - net user guest /active:yes
+    - [注册表修改](https://blog.csdn.net/Purpleendurer/article/details/50509865?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.nonecase)
+    - 安装`组策略`
+    
+    ```BAT
+    @echo off
+    pushd "%~dp0"
+    dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~3*.mum >List.txt
+    dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~3*.mum >>List.txt
+    for /f %%i in ('findstr /i . List.txt 2^>nul') do dism /online /norestart /add-package:"C:\Windows\servicing\Packages\%%i"
+    pause
+    ```
+    
+- 控制面板\网络和 Internet\网络和共享中心  ->高级共享设置
 
-WIN10 ：WIN->打印机 ->管理->打印机属性
+  ![image-20201020150552600](media/image-20201020150552600.png)
 
-- 安装`组策略`
+  往下拉Q&A 提示`输入网络密码`，关闭密码保护共享
 
-  ```BAT
-  @echo off
-  pushd "%~dp0"
-  dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~3*.mum >List.txt
-  dir /b C:\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~3*.mum >>List.txt
-  for /f %%i in ('findstr /i . List.txt 2^>nul') do dism /online /norestart /add-package:"C:\Windows\servicing\Packages\%%i"
-  pause
-  
-  ```
+  ![image-20201020152956208](media/image-20201020152956208.png)
 
 - 开启GUEST用户
 
   ![1556596498861](media/1556596498861.png)
 
-- 配置策略组
+在右侧策略处找到`账户:使用空白密码的本地账户只允许进行控制台登录`，将其改为“已禁用”
 
-![1556596115963](media/1556596115963.png)
+![image-20201020150903405](media/image-20201020150903405.png)
 
-在右侧策略处找到`账户:使用空白密码的本地账户只允许进行控制台登录`，此策略默认是已启用；双击打开“账户:使用空白密码的本地账户只允许进行控制台登录”，将其改为“已禁用”
+Q&A 你可能没有权限使用网络资源
 
-- 设置打印机为共享
+![连接共享打印机提示没有权限使用网络资源](https://exp-picture.cdn.bcebos.com/ab966c6b0ce265e76df4e2cc9f23beb9773eb753.jpg?x-bce-process=image%2Fresize%2Cm_lfit%2Cw_500%2Climit_1)
 
-## 你可能没有权限使用网络资源
+
+
+打开组策略--计算机配置--windows设置--安全设du置--本地策略--用户权利指派，在窗口右边找zhi到“从网络访问此计算机”dao里添加"guest“。
+2，打开组策略--计算机配置--windows设置--安全设置--本地策略--安全选项，在窗口右边找到“不允许SAM帐户和共享的匿名枚举”并禁用。
 
 
 

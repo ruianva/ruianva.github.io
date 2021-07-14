@@ -317,7 +317,7 @@
   - 网卡：四口ge，电口
   - raid卡：支持并行raid5，如h730p
 
-### 存储
+## 存储
 
 2个480G SSD与4个4TB SATA构成分层存储，采用Mirror模式，提供大约8TB的有效存储空间。分层存储是利用Windows Server 2012R2的Storage Space特性实现的。该特性可以混合使用SSD和HDD，提供分层存储的能力。热点数据保存在SSD(OS使用)。从而实现HDD的容量，和接近SSD的IO性能。
 
@@ -429,6 +429,29 @@ USB重定向
 
 
 ## mstsc(rdp) vs vnc
+
+```
+vi /etc/apt/sources.list
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+
+
+sudo apt update
+sudo apt install -y freerdp 
+vi ~/Desktop/b.desktop
+[Desktop Entry]
+Name=DesktopCloud
+Comment=My java Program
+Exec=xfreerdp /u:va6 /p:va2 /v:192.168.1.231 /sound:sys:alsa,format:1,quality:high +clipboard -f /drive:USB0,/media/pi +compression /fonts /cert-ignore
+Icon=/home/pi/example.png
+Terminal=false
+MultipleArgs=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=true
+```
 
 
 
@@ -558,9 +581,11 @@ dism /online /get-currentedition
 
 /productkey:`RC4VN-4GQBW-WYPTV-3BD66-FVXR6`
 
-### mstsc
+# mstsc
 
-powershell远程连接
+powershell設置远程连接
+
+SERVER2019 由于没有远程桌面授权服务器可以提供许可证
 
 
 
@@ -580,7 +605,8 @@ slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX #安装对应版本的GVLK密钥
 slmgr /skms kms.domain.com #KMS服务器的域名或者内部IP
 slmgr /ato #执行KMS激活操作
 
-#若提示 错误:0xC0000022 在运行 Microsoft Windows 非核心版本的计算机上,运行”slui.exe 0x2a 0xC0000022″以显示错误文本
+#若提示 错误:0xC0000022 在运行 Microsoft Windows 非核心版本的计算机上,运行
+#”slui.exe 0x2a 0xC0000022″以显示错误文本
 #（在HKEY_LOCAL_MACHINE–》SOFTWARE–》Microsoft–》Windows NT–》CurrentVersion–》SoftwareProtectionPlatform里面，将SkipRearm的值修改为1）重启电脑
 #以管理员身份启动cmd，输入SLMGR -REARM，根据提示，再次重启电脑
 
@@ -942,10 +968,50 @@ https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud
 
 
 
+# ffmpeg
+
+```
+H264视频转ts视频流
+ffmpeg -i test.h264 -vcodec copy -f mpegts test.ts
+
+
+H264视频转mp4
+ffmpeg -i test.h264 -vcodec copy -f mp4 test.mp4
+
+ts视频转mp4
+ffmpeg -i test.ts -acodec copy -vcodec copy -f mp4 test.mp4
+mp4视频转flv
+ffmpeg -i test.mp4 -acodec copy -vcodec copy -f flv test.flv 
+
+
+split 
+$ ffmpeg -i source-file.foo -ss 0 -t 600 first-10-min.m4v
+$ ffmpeg -i source-file.foo -ss 600 -t 600 second-10-min.m4v
+$ ffmpeg -i source-file.foo -ss 1200 -t 600 third-10-min.m4v
+
+提取音频
+ffmpeg -i sample.mp4 -acodec copy -vn audio.aac
+ffmpeg -i sample.mp4 -acodec libmp3lame -vn audio.mp3
+
+
+编解码
+将aac解码并保存为wav文件
+ffmpeg -i audio.aac audio.wav
+```
 
 
 
 # 学生档案
+
+照片大小说明：
+
+```
+png         428K
+jpg  20质量   110K
+jpg  80质量   211K
+png   256色  196K
+png   168色  138K
+```
 
 首先，依赖于`校园内部编号`，常用于如下领域：
 
@@ -1183,9 +1249,11 @@ STUNO SEMESTER SUBJECT DIM1 WEIGHT DIM2
 
 
 
+
+
 # 云桌面增加
 
-- 在数据库表v2中预分配`IP`，建议是和vano一致，创建虚拟机记录`静态`MAC，设置到路由器，最后再提交到数据库中；
+- 在数据库表va2中预分配`IP`，建议是和vano一致，创建虚拟机记录`静态`MAC，设置到路由器，最后再提交到数据库中；
 
 - ![1577256861939](media/1577256861939.png)
 
@@ -1199,6 +1267,52 @@ STUNO SEMESTER SUBJECT DIM1 WEIGHT DIM2
 ```
 
 
-  ```
 
-  ```
+```
+导入到v1(vano  cnname value1)
+1001	蔡文极
+1002	曾祥英
+1005	陈荣益
+1007	陈蒙蒙
+1008	陈静
+1009	程春苗
+1010	戴慧君
+1011	胡奇美
+1012	胡灵康
+1013	姜仁爱
+1014	李光晶
+1017	刘婷婷
+1020	欧泽霖
+1021	邱啸
+1022	马以乐
+1024	吴小丹
+1025	吴晓勇
+1026	陈菲
+1027	谢倩倩
+1028	谢艳芳
+1029	徐建利
+1030	徐灵瑜
+1031	薛上容
+1033	杨家昊
+1034	杨茜茜
+1035	丘日谦
+1036	叶茜茜
+1039	张仕辉
+1040	代课老师
+1041	朱志光
+1042	朱珍蝶
+1043	陈敏坚
+1044	丁宏
+1045	Liz
+1046	陈夏露
+1047	葛奕
+1048	和阳
+1049	朱珍敏
+1050	潘子颖
+1051	谢旭善
+1052	邵辰辰
+1053	家校部
+1054	金亚
+1056	吴煦
+```
+
